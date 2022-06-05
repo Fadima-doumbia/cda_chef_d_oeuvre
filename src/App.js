@@ -24,6 +24,7 @@ import { Card } from "@mui/material";
 import FormStep1 from "./component/FormStep1";
 import FormEvent from "./component/FormEvent";
 import FormEvt from "./component/FormEvt";
+import Cards from "./component/Cards";
 
 function App() {
   const containerStyles = {
@@ -134,8 +135,8 @@ function App() {
           </header>
 
           <div style={content}>
-            <FormEvent/>
             {/* <FormEvent/> */}
+            <Cards />
             <Routes>
               <Route path="/home" component={<HomePage />} />
               <Route path="/form" component={<FormStep1 />} />
