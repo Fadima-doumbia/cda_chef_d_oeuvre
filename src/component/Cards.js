@@ -2,20 +2,19 @@ import { Button, Card, ListGroup, ListGroupItem } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
 import MyVerticallyCenteredModal from "./modals/MyVerticallyCenteredModal";
-import { Dashboard } from "@rsuite/icons";
 import DoingRoundIcon from '@rsuite/icons/DoingRound';
 
 const Cards = (props) => {
   const [showDetail, setShowDetail] = useState(false);
   const [modalShow, setModalShow] = useState(false);
-  const [editShow, setEditShow] = useState(false);
   const handleClick = () => {
     setShowDetail(!showDetail)
   }
-  const handleUpdate = () => {
-    setEditShow(!editShow)
-    console.log(editShow)
+  const editEvent = (id) => {
+    props.setEditForm(true);
+    props.edit(id);
   }
+
   return (
     <>
       <Card border="primary" style={{ width: "18rem", borderRadius: "10px" }}>
@@ -44,11 +43,7 @@ const Cards = (props) => {
           ) : (
             <Button variant="outline-primary" onClick={handleClick}>Details</Button>
           )}
-          {props.edithForm ? (
-          <Button variant="outline-primary" onClick={props.reset}>Fermer</Button>
-          ) : (
-            <Button variant="outline-primary" onClick={props.edithForm? props.edit(props.event.id) : undefined}>edith</Button>
-          )}
+          {/* <Button variant="outline-primary" onClick={editEvent(props.event.id)}>Modifier</Button> */}
         </Card.Body>
       </Card>
       <br />

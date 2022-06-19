@@ -10,7 +10,6 @@ import NotFoundPage from "./pages/NotFoungPage";
 import HomePage from "./pages/HomePage";
 import axios from "axios";
 
-import SideBar from "./component/SideBar";
 import { Dashboard, Gear, UserChange } from "@rsuite/icons";
 import { Sidenav, Nav, Container, Header } from "rsuite";
 import "rsuite/dist/rsuite.min.css";
@@ -64,25 +63,24 @@ function App() {
   };
   const primary = blue[600];
   const [event, setEvent] = useState([]);
-  const [edithForm, setEdithForm] = useState(false);
+  const [edithForm, setEditForm] = useState(false);
   const reset = () => {
-    setEdithForm(!edithForm);
+    setEditForm(!edithForm);
     console.log(edithForm);
   };
 
-
   const edit = (id) => {
-    console.log("edit")
+    console.log("edit");
     axios.put(`http://localhost:8080/api/events/final/${id}`).then((res) => {
       console.log(res.data);
-    //   setEvent(res.data);
+      //   setEvent(res.data);
     });
   };
-let listEvent = [];
+  let listEvent = [];
 
   useEffect(() => {
-    console.log("effect")
-    
+    console.log("effect");
+
     axios.get(`http://localhost:8080/api/events/final`).then((res) => {
       console.log(res.data);
       setEvent(res.data);
@@ -180,26 +178,31 @@ let listEvent = [];
             </header>
 
             <div style={content}>
-            {event.length>0?(
-          event.map((evt, index) => (
-          <Cards
-            event={evt}
-            key={index}
-            reset={reset}
-            edithForm={edithForm}
-            setEdithForm={setEdithForm}
-            setEvent={setEvent}
-            edit={edit}
-          />
-          )
-        )):(<h1>coucoucou</h1>)}
+            <EventPage
+                setEvent={setEvent}
+                reset={reset}
+                edithForm={edithForm}
+                edit={edit}
+                setEditForm={setEditForm}
+              /> 
 
-      <EventPage
-        setEvent={setEvent}
-        reset={reset}
-        edithForm={edithForm}
-        setEdithForm={setEdithForm}
-      />
+
+              {event.length > 0 ? (
+                event.map((evt, index) => (
+                  <Cards
+                    event={evt}
+                    key={index}
+                    reset={reset}
+                    edithForm={edithForm}
+                    setEditForm={setEditForm}
+                    setEvent={setEvent}
+                    edit={edit}
+                  />
+                ))
+              ) : (
+                <h1>coucoucou</h1>
+              )}
+
               <Routes>
                 <Route path="/home" component={<HomePage />} />
                 <Route path="/form" component={AddEvent} />
@@ -208,7 +211,7 @@ let listEvent = [];
             </div>
           </div>
         </Container>
-      </BrowserRouter> 
+      </BrowserRouter>
     </div>
   );
 }

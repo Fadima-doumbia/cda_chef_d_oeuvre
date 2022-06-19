@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
-import axios from "axios";
-import { getAllByAltText } from "@testing-library/react";
 
 const EditEvent = (props) => {
   const [formDetail, setFormDetail] = useState(props.initFormValue);
@@ -25,14 +23,6 @@ const EditEvent = (props) => {
         [event.target.name]: event.target.value,
       }));
     }
-
-    // setFormValue((value) => ({
-    //   ...value,
-    //   [detailsEvent]: formDetail((prev) => ({
-    //     ...prev,
-    //     [event.target.name]:event.target.value,
-    //   })),
-    // }));
   };
 
   return (
@@ -116,7 +106,8 @@ const EditEvent = (props) => {
         </Col>
       </Form.Group>
 
-      {/* <Form.Group as={Row} className="mb-3" controlId="formHorizontalDate">
+      {/* 
+      <Form.Group as={Row} className="mb-3" controlId="formHorizontalDate">
         <Form.Label column sm={2}>
           Date
         </Form.Label>
@@ -129,7 +120,8 @@ const EditEvent = (props) => {
             onChange={handleChange}
           />
         </Col>
-      </Form.Group> */}
+      </Form.Group> 
+      */}
 
       <Form.Group as={Row} className="mb-3" controlId="formHorizontalChild">
         <Form.Label column sm={2}>
@@ -191,3 +183,4 @@ const EditEvent = (props) => {
     </Form>
   );
 };
+export default EditEvent;
