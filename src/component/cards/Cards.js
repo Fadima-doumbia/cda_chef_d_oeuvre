@@ -2,8 +2,8 @@ import { Button, Card, ListGroup, ListGroupItem } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
 import DoingRoundIcon from "@rsuite/icons/DoingRound";
-import MyVerticallyCenteredModal from "./modals/MyVerticallyCenteredModal";
-import EditEventModal from "./modals/EditEventModal";
+import MyVerticallyCenteredModal from "../modals/MyVerticallyCenteredModal";
+import EditEventModal from "../modals/EditEventModal";
 
 const Cards = (props) => {
   const [showDetail, setShowDetail] = useState(false);

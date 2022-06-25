@@ -2,7 +2,8 @@ import axios from "axios";
 import { useState } from "react";
 import { Button, Col, Form, Row, Table } from "react-bootstrap";
 import TimePicker from "react-bootstrap-time-picker";
-import EventService from "../services/EventService";
+import EventService from "../../services/EventService";
+import EventList from "./EventList";
 import EventsList from "./EventsList";
 import FormDetailEvent from "./FormDetailEvent";
 
@@ -300,6 +301,7 @@ const FormEvent = () => {
         Primary
       </Button>
       <EventsList events={events} eventLength={events.length} getEvent={getEvent}  />
+      <EventList events={events} eventLength={events.length} getEvent={getEvent}  />
     </>
   );
 };

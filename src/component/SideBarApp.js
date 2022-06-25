@@ -15,7 +15,7 @@ import "rsuite/styles/index.less";
 import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 
-const SideBar = () => {
+const SideBarApp = () => {
   const containerStyles = {
     width: "100vw",
     height: "100vh",
@@ -143,4 +143,4 @@ const SideBar = () => {
   );
 };
 
-export default SideBar;
+export default SideBarApp;

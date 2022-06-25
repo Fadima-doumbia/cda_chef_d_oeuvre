@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button, Col, Form, Row, Table } from "react-bootstrap";
-import EventService from "../services/EventService";
+import EventService from "../../services/EventService";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const EventsList = (props) => {
