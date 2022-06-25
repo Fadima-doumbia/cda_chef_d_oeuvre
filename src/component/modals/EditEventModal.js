@@ -1,22 +1,7 @@
 import { useState } from "react";
-import { Button, Col, Form, Row } from "react-bootstrap";
-import axios from "axios";
-import EditEvent from "../component/EditEvent";
-
-const EventPage = (props) => {
-  const initFormValue = {
-    "id": null,
-    name: "",
-    desription: "",
-    child: false,
-    address: "",
-    prix: 15.0,
-    places: 0,
-    heureDebut: "11:30:00",
-    heureFin: "14:35:00",
-  };
-
-  const [formDetail, setFormDetail] = useState(initFormValue);
+import { Button, Col, Form, Row, Modal } from "react-bootstrap";
+function EditEventModal(props) {
+  const [formDetail, setFormDetail] = useState(props.event);
 
   const handleChange = (event) => {
     if (event.target.name === "child") {
@@ -37,28 +22,20 @@ const EventPage = (props) => {
         [event.target.name]: event.target.value,
       }));
     }
-    console.log(formDetail)
   };
-
-  const handleSubmit = () => {
-    formDetail.prix = parseInt(formDetail.prix);
-    formDetail.places = parseInt(formDetail.places);
-    console.log(formDetail);
-    axios
-      .post(`http://localhost:8080/api/events/final`, formDetail )
-      .then((res) => {
-        console.log(res.data);
-        props.setEvent((prev)=>[...prev, res.data]);
-      });
-  };
-
   return (
-    <div>
-      {props.edithForm ? (
-        <Button onClick={props.reset}>Edit</Button>
-      ) : (
-        <Button onClick={props.reset}>save</Button>
-      )}
+    <Modal
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          Modal heading
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
         <Form>
           <Form.Group as={Row} className="mb-3" controlId="formHorizontalName">
             <Form.Label column sm={2}>
@@ -147,20 +124,22 @@ const EventPage = (props) => {
             </Col>
           </Form.Group>
 
-          {/* <Form.Group as={Row} className="mb-3" controlId="formHorizontalDate">
-          <Form.Label column sm={2}>
-            Date
-          </Form.Label>
-          <Col sm={10}>
-            <Form.Control
-              type="date"
-              placeholder="Date"
-              name="date"
-              value={formDetail.date}
-              onChange={handleChange}
-            />
-          </Col>
-        </Form.Group> */}
+          {/* 
+      <Form.Group as={Row} className="mb-3" controlId="formHorizontalDate">
+        <Form.Label column sm={2}>
+          Date
+        </Form.Label>
+        <Col sm={10}>
+          <Form.Control
+            type="date"
+            placeholder="Date"
+            name="date"
+            value={formDetail.date}
+            onChange={handleChange}
+          />
+        </Col>
+      </Form.Group> 
+      */}
 
           <Form.Group as={Row} className="mb-3" controlId="formHorizontalChild">
             <Form.Label column sm={2}>
@@ -215,23 +194,13 @@ const EventPage = (props) => {
               />
             </Col>
           </Form.Group>
-
-          <Form.Group as={Row} className="mb-3">
-            <Col sm={{ span: 10, offset: 2 }}>
-              <Button type="button" onClick={handleSubmit}>
-                Creer un evènement
-              </Button>
-            </Col>
-          </Form.Group>
         </Form>
-      {/* {props.edithForm ? ( 
-        // <EditEvent 
-        // initFormValue={props.initFormValue}
-        // edit={props.edit}
-        // />
-      // ) : (
-      // )}*/}
-    </div>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={props.onHide}>Annuler</Button>
+        <Button onClick={props.update}>Modifier</Button>
+      </Modal.Footer>
+    </Modal>
   );
-};
-export default EventPage;
+}
+export default EditEventModal;
