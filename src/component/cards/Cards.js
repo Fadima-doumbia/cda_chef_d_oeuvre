@@ -4,14 +4,25 @@ import { useState } from "react";
 import DoingRoundIcon from "@rsuite/icons/DoingRound";
 import MyVerticallyCenteredModal from "../modals/MyVerticallyCenteredModal";
 import EditEventModal from "../modals/EditEventModal";
+import axios from "axios";
+import DeleteEvent from "../modals/DeleteEvent";
 
 const Cards = (props) => {
   const [showDetail, setShowDetail] = useState(false);
   const [modalShow, setModalShow] = useState(false);
   const [modal, setModal] = useState(false);
+  const [DeleteModal, setDeleteModal] = useState(false);
 
   const handleClick = () => {
     setShowDetail(!showDetail);
+  };
+
+  const deleteById = (id) => {
+    axios.delete(`http://localhost:8080/api/events/final/${id}`).then((res) => {
+      console.log(res.data);
+      // props.setEvent((prev) => {
+      // })
+    });
   };
 
   return (
@@ -57,13 +68,12 @@ const Cards = (props) => {
           <Button variant="outline-primary" onClick={() => setModal(true)}>
             Modifier
           </Button>
-          {/* <Button
+          <Button
             variant="outline-primary"
-            // href={`/home/${props.event.id}`}
-            // onClick={props.edit(props.event.id)}
+            onClick={() => setDeleteModal(true)}
           >
-            Modifier
-          </Button> */}
+            Supprimer
+          </Button>
         </Card.Body>
       </Card>
       <MyVerticallyCenteredModal
@@ -74,7 +84,12 @@ const Cards = (props) => {
         show={modal}
         onHide={() => setModal(false)}
         event={props.event}
-        update={props.edit(props.event.child)}
+        update={props.edit}
+      />
+      <DeleteEvent
+        id={props.event.id}
+        show={DeleteModal}
+        onHide={() => setDeleteModal(false)}
       />
       <br />
     </>

@@ -119,7 +119,7 @@ const SideBarApp = () => {
                   label="Evènements"
                   value="recents"
                   icon={<RestoreIcon />}
-                  href={"/"}
+                  href={"/events"}
                 />
                 <BottomNavigationAction
                   label="Nous Contacter"

@@ -2,13 +2,18 @@ import Cards from "../cards/Cards";
 
 const EventList = (props) => {
   return (
-    <>
-      {props.eventLength > 0 ? (
-        props.EventList.map((event) => <Cards event={event} />)
-      ) : (
-        <p>kk</p>
+      <>
+      {props.events.length > 0 ?(
+        props.events.map((event) => (
+          <>
+          <Cards event = {event}/>
+          </>
+        ))
+
+      ):(
+        <h3>Aucun evènement</h3>
       )}
-    </>
+      </>
   );
 };
 

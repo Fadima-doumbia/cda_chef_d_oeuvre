@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import { Button, Col, Form, Row, Modal } from "react-bootstrap";
 function EditEventModal(props) {
@@ -23,6 +24,15 @@ function EditEventModal(props) {
       }));
     }
   };
+
+  const edit = (formDetail) => {
+    axios.put(`http://localhost:8080/api/events/final/${formDetail.id}`, formDetail).then((res) => {
+      console.log(res.data);
+      // props.setEvent((prev) => {
+      // })
+    });
+  };
+
   return (
     <Modal
       {...props}
@@ -32,7 +42,7 @@ function EditEventModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Modal heading
+          Modification de l'evènement
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -198,7 +208,7 @@ function EditEventModal(props) {
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Annuler</Button>
-        <Button onClick={props.update}>Modifier</Button>
+        <Button onClick={edit(formDetail)}>Modifier</Button>
       </Modal.Footer>
     </Modal>
   );
