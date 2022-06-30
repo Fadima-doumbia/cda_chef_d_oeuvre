@@ -14,6 +14,8 @@ import "rsuite/dist/rsuite.min.css";
 import "rsuite/styles/index.less";
 import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
+import TrashIcon from '@rsuite/icons/Trash';
+
 
 const SideBarApp = () => {
   const containerStyles = {

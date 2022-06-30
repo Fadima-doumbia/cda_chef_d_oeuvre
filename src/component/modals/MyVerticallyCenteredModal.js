@@ -22,19 +22,32 @@ function MyVerticallyCenteredModal(props) {
           </p>
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Email address</Form.Label>
+              <Form.Label>Id user</Form.Label>
               <Form.Control
-                type="email"
-                placeholder="name@example.com"
+                type="number"
+                placeholder="0000"
+                name="userId"
+                value={props.reserve.userId}
                 onChange={props.handleChange}
+                autoFocus
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Id event</Form.Label>
+              <Form.Control
+                type="number"
+                placeholder="0000"
+                name="eventId"
+                onChange={props.handleChange}
+                value={props.reserve.eventId}
                 autoFocus
               />
             </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
+          <Button onClick={props.submit}>Reserver</Button>
           <Button onClick={props.onHide}>Annuler</Button>
-          <Button onClick={props.reserved}>Reserver</Button>
         </Modal.Footer>
       </Modal>
     );

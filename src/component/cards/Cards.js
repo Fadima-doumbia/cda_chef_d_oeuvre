@@ -6,8 +6,20 @@ import MyVerticallyCenteredModal from "../modals/MyVerticallyCenteredModal";
 import EditEventModal from "../modals/EditEventModal";
 import axios from "axios";
 import DeleteEvent from "../modals/DeleteEvent";
+import TrashIcon from "@rsuite/icons/Trash";
+import EditIcon from "@rsuite/icons/Edit";
+import DetailIcon from "@rsuite/icons/Detail";
+import CloseIcon from "@rsuite/icons/Close";
+import AddOutlineIcon from "@rsuite/icons/AddOutline";
+import CalendarIcon from '@rsuite/icons/Calendar';
+import EventDetailIcon from '@rsuite/icons/EventDetail';
 
 const Cards = (props) => {
+  const initial = {
+    eventId:props.event.id,
+    userId:0
+  }
+  const [reserve, setReserve] = useState(initial);
   const [showDetail, setShowDetail] = useState(false);
   const [modalShow, setModalShow] = useState(false);
   const [modal, setModal] = useState(false);
@@ -16,6 +28,33 @@ const Cards = (props) => {
   const handleClick = () => {
     setShowDetail(!showDetail);
   };
+
+  const handleOnClick = () => {
+    setShowDetail(!showDetail);
+  };
+
+  const handleOnClickReserved = (event) => {
+    setReserve((value) => ({
+      ...value,
+      [event.target.name]: event.target.value
+    }));
+    console.log(reserve)
+  }
+
+  const submitReserved = () => {
+    const reserved = parseInt(reserve.userId)
+    const finalReserved = {
+      userId: reserved,
+      eventId: reserve.eventId
+    }
+    axios.post(`http://localhost:8080/api/events/reservations`, finalReserved).then((res) => {
+      console.log(res.data);
+      // props.setEvent((prev) => {
+      // })
+    });
+    setModalShow(false);
+    console.log(reserve);
+  }
 
   const deleteById = (id) => {
     axios.delete(`http://localhost:8080/api/events/final/${id}`).then((res) => {
@@ -54,31 +93,38 @@ const Cards = (props) => {
         ) : null}
         <Card.Body style={{ display: "flex", justifyContent: "space-around" }}>
           <Button variant="outline-primary" onClick={() => setModalShow(true)}>
-            Reserver
+            Reserver<CalendarIcon/>
           </Button>
           {showDetail ? (
             <Button variant="outline-primary" onClick={handleClick}>
-              Fermer
+              <CloseIcon />
             </Button>
           ) : (
             <Button variant="outline-primary" onClick={handleClick}>
-              Details
+              {/* <DetailIcon />
+              <AddOutlineIcon /> */}
+               Detail<EventDetailIcon/>
             </Button>
           )}
           <Button variant="outline-primary" onClick={() => setModal(true)}>
-            Modifier
+            <EditIcon />
           </Button>
           <Button
             variant="outline-primary"
             onClick={() => setDeleteModal(true)}
           >
-            Supprimer
+            <TrashIcon />
           </Button>
         </Card.Body>
       </Card>
       <MyVerticallyCenteredModal
+      eventId={props.event.id}
         show={modalShow}
         onHide={() => setModalShow(false)}
+        reserve={reserve}
+        setReserve={setReserve}
+        handleChange={handleOnClickReserved}
+        submit={submitReserved}
       />
       <EditEventModal
         show={modal}

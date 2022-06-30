@@ -4,8 +4,8 @@ const Layout = () => {
 
   return (
     <>
-      <div style={{ display: "flex" }}>
-        <div style={{ display: "20%" }}>
+      <div >
+        <div >
           <SideBarApp />
         </div>
       </div>

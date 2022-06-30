@@ -1,0 +1,5 @@
+const reservations = () => {
+    return(
+        <>reservations</>
+    )
+}
