@@ -7,6 +7,13 @@ import {
 import Layout from "./pages/layout/Layout";
 import 'rsuite/dist/rsuite.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import CardEvent from "./components/CardEvent";
+import CardDetailsEvent from "./components/CardDetailsEvent";
+import AdminCardEvent from "./components/AdminCardEvent";
+import Searchh from "./components/Searchh";
+import ProfilPage from "./components/ProfilPage";
+import TableEvent from "./components/TableEvent";
+import Event from "./components/Event";
 // import "~bootstrap/scss/bootstrap";
 // import '../node_modules/rsuite/styles/index.less';
 // import 'rsuite/Button/styles/index.less';
@@ -25,6 +32,13 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
+          <Route index element={<CardEvent />} />
+          <Route path="details" element={<CardDetailsEvent />} />
+          <Route path="card" element={<CardEvent />} />
+          <Route path="admin" element={<AdminCardEvent />} />
+          <Route path="search" element={<Searchh />} />
+          <Route path="profil" element={<ProfilPage />} />
+          <Route path="table" element={<Event />} />
             {/* <Route index element={<HomePage />} />
             <Route path="form" element={<AddEvent />} />
             <Route path="events" element={<Event />} />

@@ -4,14 +4,16 @@ import { Magic } from "react-bootstrap-icons";
 
 const NavBar = () => {
     return(
-        <Navbar style={{backgroundColor: "#3c5aa6", color: "white"}}>
+        <Navbar style={{backgroundColor: "#3C6DA6", color: "white"}}>
         <Navbar.Brand href="#">RSUITE</Navbar.Brand>
         <Nav>
-          <Nav.Item icon={<Magic />}>Home</Nav.Item>
-          <Nav.Item>News</Nav.Item>
-          <Nav.Item>Products</Nav.Item>
+          <Nav.Item href='/table' icon={<Magic />}>Home</Nav.Item>
+          <Nav.Item href='/profil'>profil</Nav.Item>
+          <Nav.Item href='/card'>card</Nav.Item>
+          <Nav.Item href='/admin'>Admin</Nav.Item>
+          <Nav.Item href='/search'>search</Nav.Item>
           <Nav.Menu title="About">
-            <Nav.Item>Company</Nav.Item>
+            <Nav.Item href='/search'>SEARCH</Nav.Item>
             <Nav.Item>Team</Nav.Item>
             <Nav.Menu title="Contact">
               <Nav.Item>Via email</Nav.Item>

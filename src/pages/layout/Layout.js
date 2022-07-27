@@ -1,20 +1,25 @@
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import { Outlet } from "react-router-dom";
-import SideBar from "../../components/navbar/SideBar";
 import NavBar from "../../components/navbar/NavBar";
+import Searchh from "../../components/Searchh";
 
 const Layout = () => {
-  const style = {
-    display: "flex",
-  };
   return (
     <>
       <NavBar />
-      <Container style={{ height: "auto", backgroundColor: "lightgray" }}>
+      {/* <Searchh /> */}
+      {/* <Container style={{ height: "auto", backgroundColor: "lightgray" }}> */}
+        {/* <SearchBar/> */}
+        {/* <Form className="d-flex">
+            <Form.Control
+              type="search"
+              placeholder="Search"
+              className="me-2"
+              aria-label="Search"
+            />
+            <Button variant="outline-success">Search ssssss</Button>
+          </Form> */}
         <Outlet />
-      </Container>
+      {/* </Container> */}
     </>
     // <div style={style}>
     //     <div style={{width: "25%"}}><SideBar /></div>
