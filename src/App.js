@@ -12,7 +12,6 @@ import CardDetailsEvent from "./components/CardDetailsEvent";
 import AdminCardEvent from "./components/AdminCardEvent";
 import Searchh from "./components/Searchh";
 import ProfilPage from "./components/ProfilPage";
-import TableEvent from "./components/TableEvent";
 import Event from "./components/Event";
 // import "~bootstrap/scss/bootstrap";
 // import '../node_modules/rsuite/styles/index.less';
