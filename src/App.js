@@ -40,7 +40,7 @@ function App() {
           <Route path="search" element={<Searchh />} />
           <Route path="profil" element={<ProfilPage />} />
           <Route path="table" element={<Event />} />
-          <Route path="edit" element={<EditEvent />} />
+          {/* <Route path="edit" element={<EditEvent />} /> */}
             {/* <Route index element={<HomePage />} />
             <Route path="form" element={<AddEvent />} />
             <Route path="events" element={<Event />} />
