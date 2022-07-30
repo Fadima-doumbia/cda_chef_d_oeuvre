@@ -1,18 +1,13 @@
-import { fontSize } from "@mui/system";
 import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
 import ReservationModal from "./ReservationModal";
 import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
-import Col from "react-bootstrap/Col";
-import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
 
-const CardDetailsEvent=()=>{
+const CardDetailsEvent=(props)=>{
     const [show, setShow] = useState(false);
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    let formData = props.formData;
     return(
 <div>
 <Button
@@ -36,30 +31,29 @@ const CardDetailsEvent=()=>{
         <p style={{ margin: "0" }}>
               Description :{" "}
               <span style={{ fontSize: "12px" }}>
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
+                 {formData.description}
               </span>
             </p>
             <p style={{ margin: "0" }}>
               Autorisé aux enfants :{" "}
-              <span style={{ fontSize: "12px" }}>Non</span>
+              <span style={{ fontSize: "12px" }}>{formData.child ? "OUI" : "NON"}</span>
             </p>
             <p style={{ margin: "0" }}>
               Places disponibles :{" "}
-              <span style={{ fontSize: "12px" }}>20 places</span>
+              <span style={{ fontSize: "12px" }}> {formData.places} places  </span>
             </p>
             <p style={{ margin: "0" }}>
               Adresse :{" "}
-              <span style={{ fontSize: "12px" }}>20 rue de louvre Bamako</span>
+              <span style={{ fontSize: "12px" }}> {formData.address}</span>
             </p>
             <p style={{ margin: "0" }}>
-              Heure : <span style={{ fontSize: "12px" }}>14h - 18h</span>
+              Heure : <span style={{ fontSize: "12px" }}> {formData.heureDebut} à {formData.heureFin} </span>
             </p>
             <p style={{ margin: "0" }}>
-              Date : <span style={{ fontSize: "12px" }}>20 Decembre 2022</span>
+              Date : <span style={{ fontSize: "12px" }}> {formData.date}</span>
             </p>
             <p style={{ margin: "0" }}>
-              Prix : <span style={{ fontSize: "12px" }}>20 000</span>
+              Prix : <span style={{ fontSize: "12px" }}> {formData.prix} f CFA</span>
             </p>
 
           {/* <hr style={{ backgroundColor: "blue", height: "2px" }} /> */}

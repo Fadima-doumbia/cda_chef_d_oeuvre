@@ -1,15 +1,30 @@
+import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
-const AdminCardEvent = () => {
+
+const AdminCardEvent = (props) => {
+  const [formData, setFormData] = useState(props.data)
   const style = {
     width: "60%",
     // height: "auto"  
   };
-  // const styles = {};
+
+  const handleChange = (event) => {
+    setFormData((prev)=>({
+      ...prev,
+      [event.target.name]: event.target.value,
+    }))
+  }
+
+  const updateEvent = () => {
+
+    props.edit(formData)
+  }
+
   return (
     <div>
-      <Card style={{ width: "40%",height: "250px", backgroundColor: "#5882b3", color: "white" }}>
+      <Card style={{  backgroundColor: "#5882b3", color: "white" }}>
         <Card.Header style={{ backgroundColor: "#3C6DA6" }}>
           Nom Evenement
         </Card.Header>
@@ -18,20 +33,20 @@ const AdminCardEvent = () => {
           <div style={style}>
             <p style={{ margin: "0" }}>
               Places disponibles :{" "}
-              <span style={{ fontSize: "12px" }}>20 places</span>
+              <span style={{ fontSize: "12px" }}> {formData.date} places</span>
             </p>
             <p style={{ margin: "0" }}>
               Adresse :{" "}
-              <span style={{ fontSize: "12px" }}>20 rue de louvre Bamako</span>
+              <span style={{ fontSize: "12px" }}> {formData.address} </span>
             </p>
             <p style={{ margin: "0" }}>
-              Date : <span style={{ fontSize: "12px" }}>20 Decembre 2022</span>
+              Date : <span style={{ fontSize: "12px" }}> {formData.date} </span>
             </p>
             <p style={{ margin: "0" }}>
-              Heure : <span style={{ fontSize: "12px" }}>14h - 18h</span>
+              Heure : <span style={{ fontSize: "12px" }}>  {formData.heureDebut} - {formData.heureFin} </span>
             </p>
             <p style={{ margin: "0" }}>
-              Prix : <span style={{ fontSize: "12px" }}>20 000</span>
+              Prix : <span style={{ fontSize: "12px" }}> {formData.prix} </span>
             </p>
           </div>
           <div >

@@ -13,6 +13,8 @@ import AdminCardEvent from "./components/AdminCardEvent";
 import Searchh from "./components/Searchh";
 import ProfilPage from "./components/ProfilPage";
 import Event from "./components/Event";
+import AdminEventPage from "./pages/AdminEventPage";
+import EditEvent from "./pages/EditEvent";
 // import "~bootstrap/scss/bootstrap";
 // import '../node_modules/rsuite/styles/index.less';
 // import 'rsuite/Button/styles/index.less';
@@ -34,10 +36,11 @@ function App() {
           <Route index element={<CardEvent />} />
           <Route path="details" element={<CardDetailsEvent />} />
           <Route path="card" element={<CardEvent />} />
-          <Route path="admin" element={<AdminCardEvent />} />
+          <Route path="admin" element={<AdminEventPage />} />
           <Route path="search" element={<Searchh />} />
           <Route path="profil" element={<ProfilPage />} />
           <Route path="table" element={<Event />} />
+          <Route path="edit" element={<EditEvent />} />
             {/* <Route index element={<HomePage />} />
             <Route path="form" element={<AddEvent />} />
             <Route path="events" element={<Event />} />
