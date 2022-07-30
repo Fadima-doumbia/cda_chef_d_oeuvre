@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
@@ -10,17 +9,6 @@ import axios from "axios";
 
 
 const EditEvent = (props) => {
-  const initialState = {
-    address: "",
-    name: "",
-    date: "",
-    description: "",
-    child: false,
-    places: 0,
-    prix: 0,
-    heureDebut: "",
-    heureFin: "",
-  };
   const [formData, setFormData] = useState(props.formData);
   const [datas, setDatas] = useState([]);
 
