@@ -1,45 +1,34 @@
-import axios from "axios";
-import { useState } from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import EditEvent from "../pages/EditEvent";
-import DeleteEvent from "../components/DeleteModal"
+import Modal from "react-bootstrap/Modal";
 
-const AdminCardEvent = (props) => {
-  const [formData, setFormData] = useState(props.data);
-  const [isEdit, setIsEdit] = useState(false);
-  const [modalShow, setModalShow] = useState(false);
-
+const DeleteModal = (props) => {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const formData = props.formData;
+  const handleDelete = () => {
+    console.log("first")
+    props.delete(props.id);
+    handleClose();
+  };
   const style = {
     width: "60%",
-    // height: "auto"
   };
-
-  const handleChange = (event) => {
-    setFormData((prev) => ({
-      ...prev,
-      [event.target.name]: event.target.value,
-    }));
-  };
-
-  const deleteEvent = (id)=>{
-    console.log('ici')
-    axios.delete(`http://localhost:8080/api/events/delete/${id}`)
-    .then((res) => {
-        console.log(res.data);
-        console.log("delete");
-        let result = props.datas.filter( (element) => element.id !== id );
-        props.setDatas(result)
-      });
-  }
 
   return (
-    <div>
-      <Card style={{ backgroundColor: "#5882b3", color: "white" }}>
-        <Card.Header style={{ backgroundColor: "#3C6DA6" }}>
-          {formData.name}
-        </Card.Header>
-        <Card.Body>
+    <div style={{ backgroundColor: "#5882b3", color: "white" }}>
+      <Button variant="danger" onClick={handleShow}>
+        Supprimer
+      </Button>
+
+      <Modal show={show} onHide={handleClose} animation={false} >
+        <Modal.Header closeButton style={{ backgroundColor: "#3C6DA6", color: "white" }}>
+          <Modal.Title>{props.title}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body style={{ color: "#3C6DA6" }}>
+          {props.bodyText}
+          <hr/>
           <div style={{ display: "flex" }}>
             <div style={style}>
               <p style={{ margin: "0" }}>
@@ -95,29 +84,17 @@ const AdminCardEvent = (props) => {
               </ul>
             </div>
           </div>
-          <div style={{ display: "flex", justifyContent: "space-around" }}>
-            <Button variant="primary" onClick={() => setModalShow(true)} style={{ backgroundColor: "#3C6DA6" }} >
-              Modifier
-            </Button>
-            <EditEvent
-              formData={formData}
-              show={modalShow}
-              onHide={() => setModalShow(false)}
-            />
-            <DeleteEvent 
-            bodyText={"Est-vous sure de vouloir SUPPRIMER cet evenement ?"}
-            title={"Suppression d'évenement"}
-            id={formData.id}
-            delete={deleteEvent}
-            formData={formData}
-            setDatas={props.setDatas}
-            datas={props.datas}
-            // style={{margin: "1rem"}}
-            />
-          </div>
-        </Card.Body>
-      </Card>
+        </Modal.Body>
+        <Modal.Footer >
+          <Button variant="danger" onClick={handleDelete}>
+            Supprimer
+          </Button>
+          <Button style={{ backgroundColor: "#5882b3" }} onClick={handleClose}>
+            Fermer
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };
-export default AdminCardEvent;
+export default DeleteModal;

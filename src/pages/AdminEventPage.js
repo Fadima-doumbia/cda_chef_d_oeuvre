@@ -29,7 +29,7 @@ const AdminEventPage = () => {
             {datas.length>0?(
                 datas.map((data)=>(
                     <div style={{width: "40%", margin: "1rem auto"}}>
-                    <AdminCardEvent data={data} edit={editEvent}/>
+                    <AdminCardEvent data={data} edit={editEvent} datas={datas} setDatas={setDatas} />
                     </div>
                 ))
             ):(
