@@ -1,51 +1,52 @@
-import { fontSize } from "@mui/system";
-import Button from "react-bootstrap/Button";
+import { useState } from "react";
 import Card from "react-bootstrap/Card";
 import CardDetailsEvent from "./CardDetailsEvent";
 import ReservationModal from "./ReservationModal";
-import SearchBar from "./SearchBar";
 
-const CardEvent = () => {
-  let products = [
-    "apples",
-    "bananas",
-    "grapefruit",
-    "kiwi",
-    "avocados",
-    "lettuce",
-    "tomatoes",
-    "cheese",
-    "bread",
-    "yogurt",
-    "peas",
-    "carrots",
-    "broccoli",
-    "beans",
-    "pizza",
-    "pasta",
-    "rice",
-    "cereal",
-    "butter",
-    "milk",
-    "eggs",
-    "onions",
-    "garlic",
-    "honey",
-    "soup",
-    "salt",
-    "pepper",
-    "oregano",
-    "basil",
-    "paprika",
-  ];
+const CardEvent = (props) => {
+  const formData = props.formData;
+
+  // let products = [
+  //   "apples",
+  //   "bananas",
+  //   "grapefruit",
+  //   "kiwi",
+  //   "avocados",
+  //   "lettuce",
+  //   "tomatoes",
+  //   "cheese",
+  //   "bread",
+  //   "yogurt",
+  //   "peas",
+  //   "carrots",
+  //   "broccoli",
+  //   "beans",
+  //   "pizza",
+  //   "pasta",
+  //   "rice",
+  //   "cereal",
+  //   "butter",
+  //   "milk",
+  //   "eggs",
+  //   "onions",
+  //   "garlic",
+  //   "honey",
+  //   "soup",
+  //   "salt",
+  //   "pepper",
+  //   "oregano",
+  //   "basil",
+  //   "paprika",
+  // ];
   return (
     <div>
       {/* <SearchBar products={products} /> */}
 
       <Card
         style={{
-          width: "30%",
+          width: "350px",
           backgroundColor: "#5882b3",
+          margin:"1rem",
           color: "white",
           borderRadius: "10px",
         }}
@@ -54,7 +55,7 @@ const CardEvent = () => {
           <Card.Title
             style={{ display: "flex", justifyContent: "space-between" }}
           >
-            Card Title <span>LOGO</span>{" "}
+            {formData.name} <span>LOGO</span>{" "}
           </Card.Title>
           <hr style={{ backgroundColor: "blue", height: "2px" }} />
           <Card.Text>
@@ -67,20 +68,20 @@ const CardEvent = () => {
             </p> */}
             <p style={{ margin: "0" }}>
               Places disponibles :{" "}
-              <span style={{ fontSize: "12px" }}>20 places</span>
+              <span style={{ fontSize: "12px" }}> {formData.date} places</span>
             </p>
             <p style={{ margin: "0" }}>
               Adresse :{" "}
-              <span style={{ fontSize: "12px" }}>20 rue de louvre Bamako</span>
+              <span style={{ fontSize: "12px" }}> {formData.address} </span>
             </p>
             <p style={{ margin: "0" }}>
-              Heure : <span style={{ fontSize: "12px" }}>14h - 18h</span>
+              Heure : <span style={{ fontSize: "12px" }}> {formData.heureDebut} - {formData.heureFin}</span>
             </p>
             <p style={{ margin: "0" }}>
-              Date : <span style={{ fontSize: "12px" }}>20 Decembre 2022</span>
+              Date : <span style={{ fontSize: "12px" }}> {formData.date} </span>
             </p>
             <p style={{ margin: "0" }}>
-              Prix : <span style={{ fontSize: "12px" }}>20 000</span>
+              Prix : <span style={{ fontSize: "12px" }}> {formData.prix} </span>
             </p>
           </Card.Text>
 
@@ -95,7 +96,7 @@ const CardEvent = () => {
             <ReservationModal/> */}
           {/* </div> */}
           <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <CardDetailsEvent />
+            <CardDetailsEvent formData={formData} />
             <ReservationModal />
             {/* <SearchBar/> */}
           </div>

@@ -1,9 +1,10 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
+import CardEvent from "./CardEvent";
 
 const Event = () => {
   const initialState = {
@@ -20,6 +21,12 @@ const Event = () => {
   };
   const [formData, setFormData] = useState(initialState);
   const [datas, setDatas] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:8080/api/events").then((res) => {
+      setDatas(res.data);
+    });
+  }, []);
 
   const handleChange = (event) => {
     const prix = parseInt(event.target.value);
@@ -47,21 +54,21 @@ const Event = () => {
 
   const handleSubmit = () => {
     if (formData.child === "true") {
-        formData.child=true
+      formData.child = true;
     } else {
-        formData.child=false;
+      formData.child = false;
     }
-    console.log("formData");
     console.log(formData);
-    axios.post(`http://localhost:8080/api/events`, formData)
-    .then((res) => {
+    console.log("formData");
+    axios.post(`http://localhost:8080/api/events`, formData).then((res) => {
       console.log(res.data);
-      datas.push(res.data)
+      datas.push(res.data);
     });
   };
 
+
   console.log(formData);
-  console.log(datas)
+  console.log(datas);
   return (
     <>
       <Form
@@ -194,13 +201,13 @@ const Event = () => {
         >
           <Col
             style={{ display: "flex", justifyContent: "space-between" }}
-            sm={5}
+            sm={4}
           >
-            <Form.Label column sm={2}>
+            <Form.Label column sm={4}>
               heureDebut
             </Form.Label>
             <Form.Control
-              sm={5}
+              sm={3}
               type="time"
               placeholder="HeureDebut"
               value={formData.heureDebut}
@@ -212,7 +219,7 @@ const Event = () => {
             style={{ display: "flex", justifyContent: "space-between" }}
             sm={4}
           >
-            <Form.Label column sm={2}>
+            <Form.Label column sm={3}>
               heureFin
             </Form.Label>
             <Form.Control
@@ -259,6 +266,18 @@ const Event = () => {
           </Col>
         </Form.Group>
       </Form>
+      {/* style={{display: "flex", flexWrap: "wrap", width:"90%"}} */}
+      <div  style={{display:"flex", flexWrap: "wrap", justifyContent:"space-between"}}>
+        {datas.length > 0 ? (
+          datas.map((data, index) => (
+            <div key={index} >
+              <CardEvent formData={data} />
+            </div>
+          ))
+        ) : (
+          <div>null</div>
+        )}
+      </div>
     </>
   );
 };

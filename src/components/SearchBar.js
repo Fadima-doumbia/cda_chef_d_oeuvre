@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Form from 'react-bootstrap/Form';
 
 const SearchBar= (props) => {
     const [searchVal, setSearchVal] = useState('');
@@ -42,7 +41,8 @@ const SearchBar= (props) => {
         <div className="results-wrap">
           <ul>
             {filteredProducts.map((product) => {
-              return <li key={product} className='list-item'><a href='#'>{product}</a></li>
+              return <li key={product} className='list-item'>{product}</li>
+              // return <li key={product} className='list-item'><a>{product}</a></li>
             })}
           </ul>
         </div>
