@@ -7,9 +7,9 @@ const NavBar = () => {
         <Navbar style={{backgroundColor: "#3C6DA6", color: "white"}} sticky="top" >
         <Navbar.Brand href="#">RSUITE</Navbar.Brand>
         <Nav>
-          <Nav.Item href='/table' icon={<Magic />}>Home</Nav.Item>
+          <Nav.Item href='/event' icon={<Magic />}>Home</Nav.Item>
           <Nav.Item href='/profil'>profil</Nav.Item>
-          <Nav.Item href='/card'>card</Nav.Item>
+          {/* <Nav.Item href='/card'>card</Nav.Item> */}
           <Nav.Item href='/admin'>Admin</Nav.Item>
           {/* <Nav.Item href='/edit'>edit</Nav.Item> */}
           <Nav.Menu title="About">

@@ -55,7 +55,7 @@ const CardEvent = (props) => {
           <Card.Title
             style={{ display: "flex", justifyContent: "space-between" }}
           >
-            {formData.name} <span>LOGO</span>{" "}
+           {formData.name} <span>LOGO</span>{" "}
           </Card.Title>
           <hr style={{ backgroundColor: "blue", height: "2px" }} />
           <Card.Text>

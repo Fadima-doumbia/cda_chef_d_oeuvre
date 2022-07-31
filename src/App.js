@@ -33,13 +33,13 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
-          <Route index element={<CardEvent />} />
+          {/* <Route index element={<CardEvent />} /> */}
           <Route path="details" element={<CardDetailsEvent />} />
-          <Route path="card" element={<CardEvent />} />
+          {/* <Route path="card" element={<CardEvent />} /> */}
           <Route path="admin" element={<AdminEventPage />} />
           <Route path="search" element={<Searchh />} />
           <Route path="profil" element={<ProfilPage />} />
-          <Route path="table" element={<Event />} />
+          <Route path="event" element={<Event />} />
           {/* <Route path="edit" element={<EditEvent />} /> */}
             {/* <Route index element={<HomePage />} />
             <Route path="form" element={<AddEvent />} />
