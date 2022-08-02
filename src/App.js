@@ -15,6 +15,8 @@ import ProfilPage from "./components/ProfilPage";
 import Event from "./components/Event";
 import AdminEventPage from "./pages/AdminEventPage";
 import EditEvent from "./pages/EditEvent";
+import CalendarPage from "./pages/CalendarPage";
+
 // import "~bootstrap/scss/bootstrap";
 // import '../node_modules/rsuite/styles/index.less';
 // import 'rsuite/Button/styles/index.less';
@@ -40,6 +42,7 @@ function App() {
           <Route path="search" element={<Searchh />} />
           <Route path="profil" element={<ProfilPage />} />
           <Route path="event" element={<Event />} />
+          <Route path="calendar" element={<CalendarPage />} />
           {/* <Route path="edit" element={<EditEvent />} /> */}
             {/* <Route index element={<HomePage />} />
             <Route path="form" element={<AddEvent />} />

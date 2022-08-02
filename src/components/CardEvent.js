@@ -97,7 +97,7 @@ const CardEvent = (props) => {
           {/* </div> */}
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <CardDetailsEvent formData={formData} />
-            <ReservationModal />
+            <ReservationModal id={formData.id} />
             {/* <SearchBar/> */}
           </div>
           {/* <Card.Link href="#">Card Link</Card.Link> */}
