@@ -14,7 +14,7 @@ const ProfilPage = () => {
       setDatas(res.data);
     });
   }, []);
-
+  
   return (
     <div>
       <div
@@ -73,7 +73,7 @@ const ProfilPage = () => {
         </div>
       </div>
       <div style={{width:"90%", margin: "auto", color: "#3C6DA6"}}>
-        <ReservationTable datas={datas} />
+        <ReservationTable datas={datas} setDatas={setDatas}/>
         <TableEvent />
       </div>
     </div>

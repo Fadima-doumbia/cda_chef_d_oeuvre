@@ -5,6 +5,8 @@ import PlusIcon from "@rsuite/icons/Plus";
 import React, { useState, useRef } from 'react';
 import Overlay from 'react-bootstrap/Overlay';
 import Popover from 'react-bootstrap/Popover';
+import ConfirmModal from "./ConfirmModal";
+import axios from "axios";
 
 const ReservationTable = (props) => {
   const [show, setShow] = useState(false);
@@ -15,6 +17,15 @@ const ReservationTable = (props) => {
     setShow(!show);
     setTarget(event.target);
   };
+
+  const annuler = (id)=>{
+    axios.delete(`http://localhost:8080/api/events/annuler/${id}`);
+    let filter=props.datas.filter(function (e) {
+        return e.id != id;
+    });
+    console.log(id)
+    props.setDatas(filter);
+  }
   return (
     <Table striped bordered hover variant="ligth" className="mt-3">
       <thead>
@@ -76,9 +87,15 @@ const ReservationTable = (props) => {
                 <p>{data.prix}</p>
               </th>
               <th>
-                <Button variant="outline-danger">
+                <ConfirmModal
+                title={"Annulation De Reservation"}
+                body={"Voulez-vous annuler la reservation ?"}
+                buttonName={"Annuler"}
+                method={()=> annuler(data.id)}
+                />
+                {/* <Button variant="outline-danger">
                   <TrashFill />
-                </Button>
+                </Button> */}
               </th>
             </tr>
           ))
