@@ -11,9 +11,23 @@ import CardEvent from "../components/CardEvent";
 
 const CalendarPage = () => {
     const [datas, setDatas] = useState([]);
+    const [events, setEvents] = useState([]);
   const localizer = momentLocalizer(moment);
   useEffect(() => {
     axios.get("http://localhost:8080/api/events").then((res) => {
+      let objectList=  {
+        'title': '',
+        'start': new Date(),
+        'end': new Date()
+      }
+      res.data.forEach(element => {
+        events.push({
+          'title':element.name,
+          'start':new Date(element.date),
+          'end':new Date(element.date),
+        })
+      });
+
       setDatas(res.data);
     });
   }, []);
@@ -30,7 +44,7 @@ const CalendarPage = () => {
         <Col sm={8}>
           <Calendar
             localizer={localizer}
-            events={datas}
+            events={events}
             startAccessor="start"
             endAccessor="end"
             style={{ height: 500 }}
