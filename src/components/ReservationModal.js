@@ -23,28 +23,31 @@ const ReservationModal = (props) => {
       ...prev,
       [event.target.name]: event.target.value,
     }));
-    console.log(formReserved)
+    console.log(formReserved);
   };
 
   const reserver = async () => {
-    let userId =0;
-    axios
-      .get(`http://localhost:8080/api/events/users/email/${formReserved.email}`)
+    let userId = 0;
+    console.log(formReserved);
+    let test;
+    await axios.get(`http://localhost:8080/api/events/users/email/${formReserved.email}`)
       .then((res) => {
         setUser(res.data);
-        userId=res.data.id;
+        userId = res.data.id;
+        test= res.data;
+        // console.log(res.data);
       });
 
-    console.log(userId);
-    console.log(user.id);
-    reservation.event.id=props.id;
-    reservation.user.id=user.id;
-
-    axios.post(
-      `http://localhost:8080/api/events/reservation`, reservation
-    ).then((res=>{
-      console.log("reservation", res.data)
-    }));
+    console.log(test);
+    console.log(user);
+    reservation.event.id = props.id;
+    reservation.user.id = test.id;
+    console.log(reservation)
+    axios
+      .post(`http://localhost:8080/api/events/reservation`, reservation)
+      .then((res) => {
+        console.log("reservation", res.data);
+      });
 
     // axios
     //   .get(`http://localhost:8080/api/events/allReservations`)
@@ -52,7 +55,7 @@ const ReservationModal = (props) => {
     //     console.log(res.data);
     //   });
 
-    handleClose()
+    handleClose();
   };
 
   return (

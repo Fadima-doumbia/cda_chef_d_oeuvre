@@ -23,7 +23,7 @@ const ProfilPage = () => {
           justifyContent: "space-around",
           backgroundColor: "#5882b3",
           width: "70%",
-          margin: "auto",
+          margin: "2rem auto",
           padding: "1rem",
           color: "white",
         }}

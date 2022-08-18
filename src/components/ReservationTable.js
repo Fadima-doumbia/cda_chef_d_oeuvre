@@ -93,9 +93,7 @@ const ReservationTable = (props) => {
                 buttonName={"Annuler"}
                 method={()=> annuler(data.id)}
                 />
-                {/* <Button variant="outline-danger">
-                  <TrashFill />
-                </Button> */}
+
               </th>
             </tr>
           ))
