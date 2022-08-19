@@ -40,7 +40,7 @@ const CardEvent = (props) => {
   //   "paprika",
   // ];
   return (
-    <div>
+    <div >
       {/* <SearchBar products={products} /> */}
 
       <Card
