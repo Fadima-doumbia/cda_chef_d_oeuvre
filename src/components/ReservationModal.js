@@ -61,14 +61,15 @@ const ReservationModal = (props) => {
   return (
     <>
       <Button
-        variant="primary"
+        // variant="primary"
+        className="buttonSubmit"
         onClick={handleShow}
-        style={{
+        // style={{
           //   heigth: "35px",
-          width: "auto",
-          backgroundColor: "#3C6DA6",
+          // width: "auto",
+          // backgroundColor: "#3C6DA6",
           //   maxWidth: "40%",
-        }}
+        // }}
       >
         Reserver
       </Button>
@@ -124,7 +125,7 @@ const ReservationModal = (props) => {
           {/* <hr style={{ backgroundColor: "blue", height: "2px" }} /> */}
         </Modal.Body>
         <Modal.Footer style={{ borderTop: "2px solid #3C6DA6" }}>
-          <Button variant="primary" onClick={reserver}>
+          <Button className="buttonSubmit" onClick={reserver}>
             Reserver
           </Button>
           <Button variant="secondary" onClick={handleClose}>

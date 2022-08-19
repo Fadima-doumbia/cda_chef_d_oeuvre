@@ -18,16 +18,7 @@ const ProfilPage = () => {
   return (
     <div>
       <div
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-          backgroundColor: "#5882b3",
-          width: "70%",
-          margin: "2rem auto",
-          padding: "1rem",
-          color: "white",
-        }}
-      >
+      className="profil-container">
         <div style={{ padding: "1rem 1rem 1rem 0" }}>
           <h3>Donnée Personnelles</h3>
           <h5>Nom Prenom : </h5>
@@ -35,12 +26,7 @@ const ProfilPage = () => {
           <h5>Date De Naissance : </h5>
           <Button>Modifier</Button>
         </div>
-        <div
-          style={{
-            padding: "1rem 1rem 1rem 2rem",
-            borderLeft: "2px solid #3C6DA6",
-          }}
-        >
+        <div className="borderBar">
           <h3>Modifier le mot de passe</h3>
           <Form>
             <Row>
@@ -74,7 +60,7 @@ const ProfilPage = () => {
       </div>
       <div style={{width:"90%", margin: "auto", color: "#3C6DA6"}}>
         <ReservationTable datas={datas} setDatas={setDatas}/>
-        <TableEvent />
+        {/* <TableEvent /> */}
       </div>
     </div>
   );

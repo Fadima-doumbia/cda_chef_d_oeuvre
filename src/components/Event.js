@@ -151,10 +151,8 @@ const Event = () => {
         </Form.Group>
         <Form.Group
           as={Row}
-          // className="mb-3"
           className="mb-3 flex-col"
           controlId="formHorizontalPlaces"
-          // style={{ justifyContent: "space-around" }}
           sm={8}
         >
           <Col className="flex-col"
@@ -192,7 +190,6 @@ const Event = () => {
           as={Row}
           className="mb-3 flex-col"
           controlId="formHorizontalPlaces"
-          // style={{ justifyContent: "space-around" }}
           sm={8}
         >
           <Col

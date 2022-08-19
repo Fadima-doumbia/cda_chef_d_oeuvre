@@ -2,6 +2,7 @@ import { useState } from "react";
 import Card from "react-bootstrap/Card";
 import CardDetailsEvent from "./CardDetailsEvent";
 import ReservationModal from "./ReservationModal";
+import '../styles.scss'
 
 const CardEvent = (props) => {
   const formData = props.formData;
@@ -43,29 +44,16 @@ const CardEvent = (props) => {
       {/* <SearchBar products={products} /> */}
 
       <Card
-        style={{
-          width: "350px",
-          backgroundColor: "#5882b3",
-          margin:"1rem",
-          color: "white",
-          borderRadius: "10px",
-        }}
+      className="card"
       >
         <Card.Body>
           <Card.Title
             style={{ display: "flex", justifyContent: "space-between" }}
           >
-           {formData.name} <span>LOGO</span>{" "}
+           {formData.name} <span>EAGLE EVENT</span>{" "}
           </Card.Title>
           <hr style={{ backgroundColor: "blue", height: "2px" }} />
           <Card.Text>
-            {/* <p style={{ margin: "0" }}>
-              Description :{" "}
-              <span style={{ fontSize: "12px" }}>
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </span>
-            </p> */}
             <p style={{ margin: "0" }}>
               Places disponibles :{" "}
               <span style={{ fontSize: "12px" }}> {formData.date} places</span>
@@ -84,24 +72,10 @@ const CardEvent = (props) => {
               Prix : <span style={{ fontSize: "12px" }}> {formData.prix} </span>
             </p>
           </Card.Text>
-
-          {/* <div style={{ display: "flex", justifyContent: "space-between" }}> */}
-          {/* <Button variant="primary" href="/details" style={{ heigth: "35px", width: "auto", backgroundColor: "#3C6DA6" }}>
-              Details
-            </Button> */}
-          {/* <Button variant="primary" style={{ heigth: "35px", width: "auto", backgroundColor: "#3C6DA6" }}>
-              Reserver
-            </Button> */}
-          {/* <CardDetailsEvent/>
-            <ReservationModal/> */}
-          {/* </div> */}
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <CardDetailsEvent formData={formData} />
             <ReservationModal id={formData.id} />
-            {/* <SearchBar/> */}
           </div>
-          {/* <Card.Link href="#">Card Link</Card.Link> */}
-          {/* <Card.Link href="#">Another Link</Card.Link> */}
         </Card.Body>
       </Card>
     </div>

@@ -11,13 +11,7 @@ const Searchh = () => {
       <div>
         <Form className="d-block">
           <div
-            className="d-flex"
-            style={{
-              border: "2px solid #3C6DA6",
-              margin: "1rem",
-              padding: "1rem",
-            }}
-          >
+            className="search-form-container">
             <Form.Control
               type="search"
               placeholder="Search"
@@ -29,23 +23,16 @@ const Searchh = () => {
             </Button>
           </div>
           <div
-            className="d-flex"
-            style={{ justifyContent: "space-around", marginTop: "1rem" }}
-          >
+            className="search-options-container">
             <Col
-              className="d-flex"
-              sm={8}
-              style={{ justifyContent: "space-around", marginTop: "1rem" }}
+              className="search-options" sm={8}
             >
               <Form.Check label="Date" />
               <Form.Check label="Heure" />
               <Form.Check label="Enfant" />
               <Form.Check label="Prix" />
             </Col>
-            <Col
-              className="d-flex"
-              style={{ justifyContent: "space-around", marginTop: "1rem" }}
-            >
+            <Col className="search-options">
               <Form.Check
                 type="radio"
                 label="Croissant"

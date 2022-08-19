@@ -1,12 +1,12 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Modal from 'react-bootstrap/Modal';
 import axios from "axios";
+import '../styles.scss'
 
 
 const EditEvent = (props) => {
@@ -64,7 +64,7 @@ const EditEvent = (props) => {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton  style={{ backgroundColor: "#3C6DA6", color: "white" }}>
+      <Modal.Header closeButton className="buttonSubmit">
         <Modal.Title id="contained-modal-title-vcenter">
           Modifier Evènement
         </Modal.Title>
@@ -111,12 +111,6 @@ const EditEvent = (props) => {
 
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridCity">
-            <Form.Label>Date</Form.Label>
-            <Form.Control type="date" value={formData.date} name="date"  style={{ color: "#3C6DA6" }}               
-            onChange={handleChange}
-            />
-          </Form.Group>
-          <Form.Group as={Col} controlId="formGridCity">
             <Form.Label>Heure Debut</Form.Label>
             <Form.Control  style={{ color: "#3C6DA6" }}
               type="time"
@@ -132,6 +126,12 @@ const EditEvent = (props) => {
               value={formData.heureFin}
               name="heureFin"
               onChange={handleChange}
+            />
+          </Form.Group>
+          <Form.Group as={Col} controlId="formGridCity">
+            <Form.Label>Date</Form.Label>
+            <Form.Control type="date" value={formData.date} name="date"  style={{ color: "#3C6DA6" }}               
+            onChange={handleChange}
             />
           </Form.Group>
         </Row>
@@ -160,13 +160,13 @@ const EditEvent = (props) => {
             </Form.Select>
           </Form.Group>
         </Row>
-        <Button variant="primary" type="button" style={{ backgroundColor: "#5882b3", color: "white" }} onClick={updateEvent}>
+        <Button type="button" className="buttonClick" onClick={updateEvent}>
           Modifier
         </Button>
       </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={props.onHide} style={{ backgroundColor: "#5882b3", color: "white" }}>Close</Button>
+        <Button onClick={props.onHide} className="buttonClick">Close</Button>
       </Modal.Footer>
     </Modal>
   );

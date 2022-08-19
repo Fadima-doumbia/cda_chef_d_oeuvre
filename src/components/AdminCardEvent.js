@@ -2,6 +2,7 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import EditEvent from "../pages/EditEvent";
+import '../styles.scss'
 
 const AdminCardEvent = (props) => {
   const [formData, setFormData] = useState(props.data);
@@ -30,38 +31,38 @@ const AdminCardEvent = (props) => {
 
   return (
     <div>
-      <Card style={{ backgroundColor: "#5882b3", color: "white" }}>
-        <Card.Header style={{ backgroundColor: "#3C6DA6" }}>
+      <Card className="admin-card-container">
+        <Card.Header className="header-card">
           {formData.name}
         </Card.Header>
         <Card.Body>
-          <div style={{ display: "flex" }}>
+          <div className="flex-container">
             <div style={style}>
-              <p style={{ margin: "0" }}>
+              <p className="p">
                 Places disponibles :{" "}
-                <span style={{ fontSize: "12px" }}>
+                <span className="span">
                   {" "}
                   {formData.places} places
                 </span>
               </p>
-              <p style={{ margin: "0" }}>
+              <p className="p">
                 Adresse :{" "}
-                <span style={{ fontSize: "12px" }}> {formData.address} </span>
+                <span className="span"> {formData.address} </span>
               </p>
-              <p style={{ margin: "0" }}>
+              <p  className="p">
                 Date :{" "}
-                <span style={{ fontSize: "12px" }}> {formData.date} </span>
+                <span className="span"> {formData.date} </span>
               </p>
-              <p style={{ margin: "0" }}>
+              <p className="p">
                 Heure :{" "}
-                <span style={{ fontSize: "12px" }}>
+                <span className="span">
                   {" "}
                   {formData.heureDebut} - {formData.heureFin}{" "}
                 </span>
               </p>
-              <p style={{ margin: "0" }}>
+              <p className="p">
                 Prix :{" "}
-                <span style={{ fontSize: "12px" }}> {formData.prix} </span>
+                <span className="span"> {formData.prix} </span>
               </p>
             </div>
             <div>
@@ -90,7 +91,7 @@ const AdminCardEvent = (props) => {
               </ul>
             </div>
           </div>
-          <div style={{ display: "flex", justifyContent: "center" }}>
+          <div className="admin-card-button-container">
             <Button variant="primary" onClick={() => setModalShow(true)} style={{ backgroundColor: "#3C6DA6" }} >
               Modifier
             </Button>
