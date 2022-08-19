@@ -16,6 +16,7 @@ import Event from "./components/Event";
 import AdminEventPage from "./pages/AdminEventPage";
 import EditEvent from "./pages/EditEvent";
 import CalendarPage from "./pages/CalendarPage";
+import './style.css'
 
 // import "~bootstrap/scss/bootstrap";
 // import '../node_modules/rsuite/styles/index.less';
