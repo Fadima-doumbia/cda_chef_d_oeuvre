@@ -1,0 +1,34 @@
+.form{
+    background-Color: #5882b3;
+    width: 60%;
+    margin: 1rem auto;
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+.flex-col{
+    display: flex;
+    justify-content: space-between;
+}
+.buttonSubmit{
+    background-color: #3C6DA6;
+}
+.container-Card{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+@media screen and (max-width: 768px) {
+    .form{
+        background-Color: #5882b3;
+        width: 80%;
+        margin: 1rem auto;
+        padding: 1rem;
+        color: white;
+        border-radius: 5px;
+    }
+    .flex-col{
+        display: block;
+    }
+}

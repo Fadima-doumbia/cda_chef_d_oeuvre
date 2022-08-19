@@ -5,6 +5,7 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import CardEvent from "./CardEvent";
+import '../styles.scss'
 
 const Event = () => {
   const initialState = {
@@ -71,13 +72,7 @@ const Event = () => {
   console.log(datas);
   return (
     <>
-      <Form
-        style={{
-          backgroundColor: "#5882b3",
-          width: "60%",
-          margin: " 1rem auto",
-          padding: "2rem auto",
-        }}
+      <Form className="form"
       >
         <Form.Group as={Row} className="mb-3" controlId="formHorizontalName">
           <Form.Label column sm={3}>
@@ -139,6 +134,7 @@ const Event = () => {
             />
           </Col>
         </Form.Group>
+
         <Form.Group as={Row} className="mb-3" controlId="formHorizontalDate">
           <Form.Label column sm={3}>
             Date
@@ -155,16 +151,16 @@ const Event = () => {
         </Form.Group>
         <Form.Group
           as={Row}
-          className="mb-3"
+          // className="mb-3"
+          className="mb-3 flex-col"
           controlId="formHorizontalPlaces"
-          style={{ justifyContent: "space-around" }}
+          // style={{ justifyContent: "space-around" }}
           sm={8}
         >
-          <Col
-            style={{ display: "flex", justifyContent: "space-between" }}
+          <Col className="flex-col"
             sm={5}
           >
-            <Form.Label column sm={2}>
+            <Form.Label column sm={4}>
               Places
             </Form.Label>
             <Form.Control
@@ -177,10 +173,10 @@ const Event = () => {
             />
           </Col>
           <Col
-            style={{ display: "flex", justifyContent: "space-between" }}
-            sm={4}
+            className="flex-col"
+            sm={5}
           >
-            <Form.Label column sm={2}>
+            <Form.Label column sm={4}>
               Prix
             </Form.Label>
             <Form.Control
@@ -194,20 +190,20 @@ const Event = () => {
         </Form.Group>
         <Form.Group
           as={Row}
-          className="mb-3"
+          className="mb-3 flex-col"
           controlId="formHorizontalPlaces"
-          style={{ justifyContent: "space-around" }}
+          // style={{ justifyContent: "space-around" }}
           sm={8}
         >
           <Col
-            style={{ display: "flex", justifyContent: "space-between" }}
-            sm={4}
+            className="flex-col"
+            sm={5}
           >
             <Form.Label column sm={4}>
               heureDebut
             </Form.Label>
             <Form.Control
-              sm={3}
+              sm={5}
               type="time"
               placeholder="HeureDebut"
               value={formData.heureDebut}
@@ -216,10 +212,10 @@ const Event = () => {
             />
           </Col>
           <Col
-            style={{ display: "flex", justifyContent: "space-between" }}
-            sm={4}
+            className="flex-col"
+            sm={5}
           >
-            <Form.Label column sm={3}>
+            <Form.Label column sm={4}>
               heureFin
             </Form.Label>
             <Form.Control
@@ -260,14 +256,13 @@ const Event = () => {
 
         <Form.Group as={Row} className="mb-3">
           <Col sm={{ span: 10, offset: 2 }}>
-            <Button variant="primary" onClick={handleSubmit}>
+            <Button variant="primary" onClick={handleSubmit} className="buttonSubmit">
               Primary
             </Button>
           </Col>
         </Form.Group>
       </Form>
-      {/* style={{display: "flex", flexWrap: "wrap", width:"90%"}} */}
-      <div  style={{display:"flex", flexWrap: "wrap", justifyContent:"space-between"}}>
+      <div className="container-Card">
         {datas.length > 0 ? (
           datas.map((data, index) => (
             <div key={index} >
