@@ -26,7 +26,6 @@ const ReservationTable = (props) => {
     console.log(id)
     props.setDatas(filter);
   }
-// console.log(props.datas)
 
   return (
     <Table striped bordered hover variant="ligth" className="mt-3" responsive>

@@ -11,7 +11,6 @@ const CardDetailsEvent = (props) => {
   return (
     <div>
       <Button
-        // variant="primary"
         onClick={handleShow}
         className="buttonSubmit"
       >
