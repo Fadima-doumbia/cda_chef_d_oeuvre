@@ -9,9 +9,7 @@ const NavBar = () => {
         <Nav>
           <Nav.Item href='/event' icon={<Magic />}>Home</Nav.Item>
           <Nav.Item href='/profil'>profil</Nav.Item>
-          {/* <Nav.Item href='/card'>card</Nav.Item> */}
           <Nav.Item href='/admin'>Admin</Nav.Item>
-          {/* <Nav.Item href='/edit'>edit</Nav.Item> calendar*/}
           <Nav.Item href='/calendar'>calendar</Nav.Item> 
           <Nav.Menu title="About">
             <Nav.Item href='/search'>SEARCH</Nav.Item>

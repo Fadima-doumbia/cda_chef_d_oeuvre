@@ -28,21 +28,16 @@ const ReservationModal = (props) => {
 
   const reserver = async () => {
     let userId = 0;
-    console.log(formReserved);
     let test;
     await axios.get(`http://localhost:8080/api/events/users/email/${formReserved.email}`)
       .then((res) => {
         setUser(res.data);
         userId = res.data.id;
         test= res.data;
-        // console.log(res.data);
       });
 
-    console.log(test);
-    console.log(user);
     reservation.event.id = props.id;
     reservation.user.id = test.id;
-    console.log(reservation)
     axios
       .post(`http://localhost:8080/api/events/reservation`, reservation)
       .then((res) => {

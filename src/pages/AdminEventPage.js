@@ -1,13 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import AdminCardEvent from "../components/AdminCardEvent";
+import AdminCardEvent from "../components/modal - card/AdminCardEvent";
 import '../styles.scss'
 
 const AdminEventPage = () => {
     const [datas, setDatas] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:8080/api/events").then((res) => {
+        axios.get("http://localhost:8080/api/events/all/reservations/event").then((res) => {
           setDatas(res.data);
           console.log(res.data)
         });

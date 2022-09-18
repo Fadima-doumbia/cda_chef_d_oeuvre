@@ -7,14 +7,14 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
-import CardEvent from "../components/CardEvent";
+import CardEvent from "../components/modal - card/CardEvent";
 
 const CalendarPage = () => {
     const [datas, setDatas] = useState([]);
     const [events, setEvents] = useState([]);
   const localizer = momentLocalizer(moment);
   useEffect(() => {
-    axios.get("http://localhost:8080/api/events").then((res) => {
+    axios.get("http://localhost:8080/api/events/all/reservations/event").then((res) => {
       let objectList=  {
         'title': '',
         'start': new Date(),

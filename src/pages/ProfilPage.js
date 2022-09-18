@@ -4,14 +4,14 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import ReservationTable from "./ReservationTable";
-import TableEvent from "./TableEvent";
+import ReservationTable from "../components/form - table/ReservationTable";
 
 const ProfilPage = () => {
   const [datas, setDatas] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:8080/api/events").then((res) => {
+    axios.get("http://localhost:8080/api/events/allReservations").then((res) => {
       setDatas(res.data);
+      console.log(res.data);
     });
   }, []);
   

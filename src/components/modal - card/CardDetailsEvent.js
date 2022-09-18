@@ -1,7 +1,7 @@
 import Button from "react-bootstrap/Button";
-import ReservationModal from "./ReservationModal";
 import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
+import ReservationModal from "./ReservationModal";
 
 const CardDetailsEvent = (props) => {
   const [show, setShow] = useState(false);

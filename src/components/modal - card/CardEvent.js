@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Card from "react-bootstrap/Card";
+import "../../styles.scss";
 import CardDetailsEvent from "./CardDetailsEvent";
 import ReservationModal from "./ReservationModal";
-import '../styles.scss'
 
 const CardEvent = (props) => {
   const formData = props.formData;

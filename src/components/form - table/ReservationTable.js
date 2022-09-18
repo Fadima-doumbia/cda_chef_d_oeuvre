@@ -5,7 +5,7 @@ import PlusIcon from "@rsuite/icons/Plus";
 import React, { useState, useRef } from 'react';
 import Overlay from 'react-bootstrap/Overlay';
 import Popover from 'react-bootstrap/Popover';
-import ConfirmModal from "./ConfirmModal";
+import ConfirmModal from "../modal - card/ConfirmModal";
 import axios from "axios";
 
 const ReservationTable = (props) => {
@@ -26,6 +26,8 @@ const ReservationTable = (props) => {
     console.log(id)
     props.setDatas(filter);
   }
+// console.log(props.datas)
+
   return (
     <Table striped bordered hover variant="ligth" className="mt-3" responsive>
       <thead>
@@ -45,7 +47,8 @@ const ReservationTable = (props) => {
           props.datas.map((data, index) => (
             <tr key={index}>
               <th>
-                <p>{data.name}</p>
+                {data.event.name}
+                {/* <p>{data.name}</p> */}
               </th>
               <th>
                 <div ref={ref}>
@@ -70,21 +73,27 @@ const ReservationTable = (props) => {
                 </div>
               </th>
               <th>
-                <p>{data.date}</p>
+                {data.event.date}
+                {/* <p>{data.date}</p> */}
               </th>
               <th>
-                <p>{data.address}</p>
+                {data.event.address}
+                {/* <p>{data.address}</p> */}
               </th>
               <th>
-                <p>
-                  {data.heureDebut} - {data.heureFin}
-                </p>
+                {/* <p> */}
+                  {data.event.heureDebut} - {data.event.heureFin}
+                {/* </p> */}
               </th>
               <th>
-                <p>{data.child ? "OUI" : "NON"}</p>
+                {/* <p> */}
+                  {data.event.child ? "OUI" : "NON"}
+                {/* </p> */}
               </th>
               <th>
-                <p>{data.prix}</p>
+                {/* <p> */}
+                  {data.event.prix}
+                  {/* </p> */}
               </th>
               <th>
                 <ConfirmModal
@@ -93,7 +102,6 @@ const ReservationTable = (props) => {
                 buttonName={"Annuler"}
                 method={()=> annuler(data.id)}
                 />
-
               </th>
             </tr>
           ))

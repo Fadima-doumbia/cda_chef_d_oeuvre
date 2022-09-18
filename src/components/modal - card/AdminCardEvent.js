@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import EditEvent from "../pages/EditEvent";
-import '../styles.scss'
+import EditEvent from "../../pages/EditEvent";
+import "../../styles.scss";
 
 const AdminCardEvent = (props) => {
   const [formData, setFormData] = useState(props.data);
@@ -29,29 +29,24 @@ const AdminCardEvent = (props) => {
     setIsEdit(true);
   };
 
+  console.log(formData);
+
   return (
     <div>
       <Card className="admin-card-container">
-        <Card.Header className="header-card">
-          {formData.name}
-        </Card.Header>
+        <Card.Header className="header-card">{formData.name}</Card.Header>
         <Card.Body>
           <div className="flex-container">
             <div style={style}>
               <p className="p">
                 Places disponibles :{" "}
-                <span className="span">
-                  {" "}
-                  {formData.places} places
-                </span>
+                <span className="span"> {formData.places} places</span>
               </p>
               <p className="p">
-                Adresse :{" "}
-                <span className="span"> {formData.address} </span>
+                Adresse : <span className="span"> {formData.address} </span>
               </p>
-              <p  className="p">
-                Date :{" "}
-                <span className="span"> {formData.date} </span>
+              <p className="p">
+                Date : <span className="span"> {formData.date} </span>
               </p>
               <p className="p">
                 Heure :{" "}
@@ -61,38 +56,35 @@ const AdminCardEvent = (props) => {
                 </span>
               </p>
               <p className="p">
-                Prix :{" "}
-                <span className="span"> {formData.prix} </span>
+                Prix : <span className="span"> {formData.prix} </span>
               </p>
             </div>
             <div>
               <h5>Liste de personnes</h5>
-              <ul
-                style={{
-                  height: "100px",
-                  overflowY: "scroll",
-                  scrollbarColor: "rebeccapurple green",
-                  scrollbarWidth: "thin",
-                }}
-              >
-                <li>Adama doumbia</li>
-                <li>Adama doumbia</li>
-                <li>Adama doumbia</li>
-                <li>Adama doumbia</li>
-                <li>Adama doumbia</li>
-                <li>Adama doumbia</li>
-                <li>Adama doumbia</li>
-                <li>Adama doumbia</li>
-                <li>Adama doumbia</li>
-                <li>Adama doumbia</li>
-                <li>Adama doumbia</li>
-                <li>Adama doumbia</li>
-                <li>Adama doumbia</li>
-              </ul>
+              {formData.reservations.length > 0 ? (
+                formData.reservations.map((reservation) => (
+                  <ul
+                    style={{
+                      height: "100px",
+                      overflowY: "scroll",
+                      scrollbarColor: "rebeccapurple green",
+                      scrollbarWidth: "thin",
+                    }}
+                  >
+                    <li>{reservation.user.firstName} - {reservation.user.lastName}</li>
+                  </ul>
+                ))
+              ) : (
+                <li>Aucune reservation</li>
+              )}
             </div>
           </div>
           <div className="admin-card-button-container">
-            <Button variant="primary" onClick={() => setModalShow(true)} style={{ backgroundColor: "#3C6DA6" }} >
+            <Button
+              variant="primary"
+              onClick={() => setModalShow(true)}
+              style={{ backgroundColor: "#3C6DA6" }}
+            >
               Modifier
             </Button>
             <EditEvent

@@ -4,8 +4,9 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import CardEvent from "./CardEvent";
-import '../styles.scss'
+import CardEvent from "../components/modal - card/CardEvent";
+import "../styles.scss";
+import AuthService from "../services/auth.service";
 
 const Event = () => {
   const initialState = {
@@ -22,9 +23,10 @@ const Event = () => {
   };
   const [formData, setFormData] = useState(initialState);
   const [datas, setDatas] = useState([]);
+  const [dataSource, setDataSource] = useState([]); // <== here we use the useState to be able to show the data after we fetch it
 
   useEffect(() => {
-    axios.get("http://localhost:8080/api/events").then((res) => {
+    axios.get("http://localhost:8080/api/events/all/reservations/event").then((res) => {
       setDatas(res.data);
     });
   }, []);
@@ -60,20 +62,18 @@ const Event = () => {
       formData.child = false;
     }
     console.log(formData);
-    console.log("formData");
+
     axios.post(`http://localhost:8080/api/events`, formData).then((res) => {
       console.log(res.data);
-      datas.push(res.data);
+      setDatas((datas) => [...datas, res.data]);
     });
   };
 
-
-  console.log(formData);
-  console.log(datas);
+  // console.log(formData);
+  // console.log(datas);
   return (
     <>
-      <Form className="form"
-      >
+      <Form className="form">
         <Form.Group as={Row} className="mb-3" controlId="formHorizontalName">
           <Form.Label column sm={3}>
             Titre
@@ -155,9 +155,7 @@ const Event = () => {
           controlId="formHorizontalPlaces"
           sm={8}
         >
-          <Col className="flex-col"
-            sm={5}
-          >
+          <Col className="flex-col" sm={5}>
             <Form.Label column sm={4}>
               Places
             </Form.Label>
@@ -170,10 +168,7 @@ const Event = () => {
               onChange={handleChange}
             />
           </Col>
-          <Col
-            className="flex-col"
-            sm={5}
-          >
+          <Col className="flex-col" sm={5}>
             <Form.Label column sm={4}>
               Prix
             </Form.Label>
@@ -192,10 +187,7 @@ const Event = () => {
           controlId="formHorizontalPlaces"
           sm={8}
         >
-          <Col
-            className="flex-col"
-            sm={5}
-          >
+          <Col className="flex-col" sm={5}>
             <Form.Label column sm={4}>
               heureDebut
             </Form.Label>
@@ -208,10 +200,7 @@ const Event = () => {
               onChange={handleChange}
             />
           </Col>
-          <Col
-            className="flex-col"
-            sm={5}
-          >
+          <Col className="flex-col" sm={5}>
             <Form.Label column sm={4}>
               heureFin
             </Form.Label>
@@ -253,8 +242,12 @@ const Event = () => {
 
         <Form.Group as={Row} className="mb-3">
           <Col sm={{ span: 10, offset: 2 }}>
-            <Button variant="primary" onClick={handleSubmit} className="buttonSubmit">
-              Primary
+            <Button
+              variant="primary"
+              onClick={handleSubmit}
+              className="buttonSubmit"
+            >
+              Creer
             </Button>
           </Col>
         </Form.Group>
@@ -262,7 +255,7 @@ const Event = () => {
       <div className="container-Card">
         {datas.length > 0 ? (
           datas.map((data, index) => (
-            <div key={index} >
+            <div key={index}>
               <CardEvent formData={data} />
             </div>
           ))
