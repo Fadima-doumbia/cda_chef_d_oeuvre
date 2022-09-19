@@ -32,9 +32,10 @@
   .navigation-menu li {
     list-style-type: none;
     margin: 0 1rem;
-    padding: 18px 16px;
+    padding: 8px 16px;
     margin: 0;
 }
+
 .navigation-menu li:hover {
     background-color: #5882b3;
   }

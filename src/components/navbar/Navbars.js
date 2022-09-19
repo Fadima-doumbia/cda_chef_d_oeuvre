@@ -6,7 +6,9 @@ import { Magic } from "react-bootstrap-icons";
 import eventBus from "../../common/EventBus";
 import AuthService from "../../services/auth.service";
 import Button from "react-bootstrap/Button";
-
+import AdminIcon from "@rsuite/icons/Admin";
+import OffRoundIcon from "@rsuite/icons/OffRound";
+ 
 export default function Navbars() {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
@@ -14,17 +16,17 @@ export default function Navbars() {
   const [refresh, setRefresh] = useState(false);
   const [isAuth, setIsAuth] = useState(false);
   const [currentUser, setCurrentUser] = useState(undefined);
-
+ 
   useEffect(() => {
     const user = AuthService.getCurrentUser();
     // console.log(currentUser);
-
+ 
     if (user) {
       setCurrentUser(user);
       setShowModeratorBoard(user.roles.includes("ROLE_ENTREPRENEUR"));
       setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
     }
-
+ 
     if (user !== null) {
       // console.log(user);
       setIsAuth(true);
@@ -36,7 +38,7 @@ export default function Navbars() {
       eventBus.remove("logout");
     };
   }, [refresh]);
-
+ 
   const logOut = () => {
     AuthService.logout();
     setShowModeratorBoard(false);
@@ -50,7 +52,7 @@ export default function Navbars() {
       <a href="/" className="brand-name">
         Eagle Event
       </a>
-
+ 
       <button
         className="hamburger"
         onClick={() => {
@@ -70,7 +72,7 @@ export default function Navbars() {
           />
         </svg>
       </button>
-
+ 
       <div
         className={
           isNavExpanded ? "navigation-menu expanded" : "navigation-menu"
@@ -81,58 +83,76 @@ export default function Navbars() {
             <li>
               <a href="/event">
                 <Magic />
-                Home
+                Evenements
               </a>
             </li>
           ) : null}
-
+ 
           {isAuth ? (
             <li>
-              <a href="/profil">Profil</a>
+              <a href="/reservation">Mes Reservations</a>
             </li>
           ) : null}
-
+ 
           {/* {isAuth ? (
           ) : null} */}
-
-          {isAuth ? (
+ 
+          {/* {isAuth ? (
             <li>
               <a href="/admin">Admin</a>
             </li>
-          ) : null}
-
+          ) : null} */}
+ 
           {isAuth ? (
             <li>
               <a href="/calendar">
                 <Calendar />
-                Calendar
+                Mon calendrier
               </a>
             </li>
           ) : null}
-
-          {isAuth ? (
+          {/*
             <li>
               <a href="/search">SEARCH</a>
             </li>
-          ) : null}
-
-          {isAuth ? (
-            <li>
-              <Button onClick={logOut}>logout</Button>
-            </li>
-          ) : null}
-
+           */}
+ 
           {isAuth ? null : (
             <li>
               <a href="/login">Login</a>
             </li>
           )}
-
+ 
           {isAuth ? null : (
             <li>
               <a href="/register">Register</a>
             </li>
           )}
+ 
+          <div style={{ marginLeft: "12rem" }}>
+            <ul>
+              <li>
+                <a href="/admin">Utilisateurs</a>
+              </li>
+              <li>
+                <a href="/admin">Evenements</a>
+              </li>
+              <li>
+                <a href="/profil">
+                  <AdminIcon />
+                  Profil
+                </a>
+              </li>
+              {isAuth ? (
+                <li>
+                  <Button variant="secondary" onClick={logOut}>
+                    {" "}
+                    <OffRoundIcon /> logout
+                  </Button>
+                </li>
+              ) : null}
+            </ul>
+          </div>
         </ul>
       </div>
     </nav>

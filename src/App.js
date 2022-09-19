@@ -17,6 +17,7 @@ import Profile from "./pages/Profile";
 import BoardUser from "./pages/BoardUser";
 import BoardModerator from "./pages/BoardModerator";
 import BoardAdmin from "./pages/BoardAdmin";
+import ReservationPage from "./pages/ReservationPage";
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
             <Route path="user" element={<BoardUser/>} />
             <Route path="mod" element={<BoardModerator/>} />
             <Route path="admin" element={<BoardAdmin/>} />
+            <Route path="reservation" element={<ReservationPage/>} />
           </Route>
         </Routes>
       </BrowserRouter>
