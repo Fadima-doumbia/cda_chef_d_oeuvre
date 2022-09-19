@@ -1,10 +1,10 @@
-import { Trash, TrashFill } from "react-bootstrap-icons";
+// import { Trash, TrashFill } from "react-bootstrap-icons";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
-import PlusIcon from "@rsuite/icons/Plus";
-import React, { useState, useRef } from 'react';
-import Overlay from 'react-bootstrap/Overlay';
-import Popover from 'react-bootstrap/Popover';
+// import PlusIcon from "@rsuite/icons/Plus";
+import React, { useState, useRef } from "react";
+import Overlay from "react-bootstrap/Overlay";
+import Popover from "react-bootstrap/Popover";
 import ConfirmModal from "../modal - card/ConfirmModal";
 import axios from "axios";
 
@@ -18,14 +18,14 @@ const ReservationTable = (props) => {
     setTarget(event.target);
   };
 
-  const annuler = (id)=>{
+  const annuler = (id) => {
     axios.delete(`http://localhost:8080/api/events/annuler/${id}`);
-    let filter=props.datas.filter(function (e) {
-        return e.id != id;
+    let filter = props.datas.filter(function (e) {
+      return e.id !== id;
     });
-    console.log(id)
+    console.log(id);
     props.setDatas(filter);
-  }
+  };
 
   return (
     <Table striped bordered hover variant="ligth" className="mt-3" responsive>
@@ -50,9 +50,9 @@ const ReservationTable = (props) => {
                 {/* <p>{data.name}</p> */}
               </th>
               <th>
-                <div ref={ref}>
+                {data.event.desription}
+                {/* <div ref={ref}>
                   <Button variant="outline-secondary" onClick={handleClick}>Voir la description</Button>
-
                   <Overlay
                     show={show}
                     target={target}
@@ -63,13 +63,11 @@ const ReservationTable = (props) => {
                   >
                     <Popover id="popover-contained">
                       <Popover.Header as="h3" style={{backgroundColor:"#3C6DA6"}}>Popover bottom</Popover.Header>
-                      <Popover.Body style={{backgroundColor:"#3C6DA6"}}>
-                        {/* <strong>Holy guacamole!</strong>  */}
-                        {data.description}
+                      <Popover.Body style={{backgroundColor:"#3C6DA6"}}>                        
                       </Popover.Body>
                     </Popover>
                   </Overlay>
-                </div>
+                </div> */}
               </th>
               <th>
                 {data.event.date}
@@ -81,32 +79,30 @@ const ReservationTable = (props) => {
               </th>
               <th>
                 {/* <p> */}
-                  {data.event.heureDebut} - {data.event.heureFin}
+                {data.event.heureDebut} - {data.event.heureFin}
                 {/* </p> */}
               </th>
               <th>
                 {/* <p> */}
-                  {data.event.child ? "OUI" : "NON"}
+                {data.event.child ? "OUI" : "NON"}
                 {/* </p> */}
               </th>
               <th>
                 {/* <p> */}
-                  {data.event.prix}
-                  {/* </p> */}
+                {data.event.prix}
+                {/* </p> */}
               </th>
               <th>
                 <ConfirmModal
-                title={"Annulation De Reservation"}
-                body={"Voulez-vous annuler la reservation ?"}
-                buttonName={"Annuler"}
-                method={()=> annuler(data.id)}
+                  title={"Annulation De Reservation"}
+                  body={"Voulez-vous annuler la reservation ?"}
+                  buttonName={"Annuler"}
+                  method={() => annuler(data.id)}
                 />
               </th>
             </tr>
           ))
-        ) : (
-          <tr>Pas de reservations </tr>
-        )}
+        ) : null}
       </tbody>
     </Table>
   );

@@ -132,7 +132,7 @@ export default function Navbars() {
           <div style={{ marginLeft: "12rem" }}>
             <ul>
               <li>
-                <a href="/admin">Utilisateurs</a>
+                <a href="/users">Utilisateurs</a>
               </li>
               <li>
                 <a href="/admin">Evenements</a>

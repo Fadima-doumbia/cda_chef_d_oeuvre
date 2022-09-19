@@ -18,6 +18,7 @@ import BoardUser from "./pages/BoardUser";
 import BoardModerator from "./pages/BoardModerator";
 import BoardAdmin from "./pages/BoardAdmin";
 import ReservationPage from "./pages/ReservationPage";
+import Users from "./pages/Users";
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
             <Route path="mod" element={<BoardModerator/>} />
             <Route path="admin" element={<BoardAdmin/>} />
             <Route path="reservation" element={<ReservationPage/>} />
+            <Route path="users" element={<Users/>} />
           </Route>
         </Routes>
       </BrowserRouter>
