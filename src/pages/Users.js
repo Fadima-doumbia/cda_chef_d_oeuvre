@@ -16,6 +16,7 @@ import {
 import { AddCircle } from "@mui/icons-material";
 import SearchBar from "../components/SearchBar";
 import Searchh from "../components/Searchh";
+import { padding } from "@mui/system";
 
 const Users = () => {
   const [datas, setDatas] = useState([]);
@@ -105,7 +106,6 @@ const Users = () => {
   };
 
   const handleChangeSearch = (event) => {
-    console.log("change");
     if (event.target.value !== prevSearch) {
       let filtered = arrayUsers.filter((user) =>
         user.lastName.includes(event.target.value)
@@ -113,7 +113,6 @@ const Users = () => {
       setDatas(filtered);
     }
     if (event.target.value === "") {
-      console.log("first");
       setDatas(arrayUsers);
     }
 
@@ -122,7 +121,6 @@ const Users = () => {
 
   return (
     <Container fluid>
-      {/* <Searchh datas={datas} setDatas={setDatas}/> */}
       <div>
         <Form className="d-block">
           <div className="search-form-container">
@@ -138,26 +136,58 @@ const Users = () => {
             </Button>
           </div>
           <div className="search-options-container">
-            <Col className="search-options" sm={8}>
-              <Form.Check label="Date" />
-              <Form.Check label="Heure" />
-              <Form.Check label="Enfant" />
-              <Form.Check label="Prix" />
-            </Col>
-            <Col className="search-options">
+            <Col style={{display: "flex", justifyContent: "space-between", padding: "0 1rem"}}>
               <Form.Check
+                isValid
+                defaultChecked
+                type="radio"
+                label="Nom"
+                name="formHorizontalRadios"
+                id="formHorizontalRadios1"
+              />
+              <Form.Check
+                isValid
+                type="radio"
+                label="Penom"
+                name="formHorizontalRadios"
+                id="formHorizontalRadios2"
+              />
+              <Form.Check
+                isValid
+                type="radio"
+                label="Email"
+                name="formHorizontalRadios"
+                id="formHorizontalRadios1"
+              />
+              <Form.Check
+                isValid
+                type="radio"
+                label="Role"
+                name="formHorizontalRadios"
+                id="formHorizontalRadios2"
+              />
+              {/* <Form.Check label="Nom" checked/>
+              <Form.Check label="Penom" />
+              <Form.Check label="Email" />
+              <Form.Check label="Role" /> */}
+            </Col>
+            {/* <Col className="search-options">
+              <Form.Check
+                isValid
+                checked
                 type="radio"
                 label="Croissant"
                 name="formHorizontalRadios"
                 id="formHorizontalRadios1"
               />
               <Form.Check
+                isValid
                 type="radio"
                 label="Decroissant"
                 name="formHorizontalRadios"
                 id="formHorizontalRadios2"
               />
-            </Col>
+            </Col> */}
           </div>
           <hr style={{ height: "2px", color: "#3C6DA6" }} />
         </Form>
