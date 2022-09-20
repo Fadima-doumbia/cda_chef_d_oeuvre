@@ -2,9 +2,11 @@ import axios from "axios";
 import Button from "react-bootstrap/Button";
 import { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
-import ConfirmModal from "../components/modal - card/ConfirmModal";
-import EditIcon from "@rsuite/icons/Edit";
-import { PencilFill, TrashFill } from "react-bootstrap-icons";
+// import ConfirmModal from "../components/modal - card/ConfirmModal";
+// import EditIcon from "@rsuite/icons/Edit";
+import { Circle, CircleFill, PencilFill, TrashFill } from "react-bootstrap-icons";
+import Form from "react-bootstrap/Form";
+import { AddCircle } from "@mui/icons-material";
 
 const Users = () => {
   const [datas, setDatas] = useState([]);
@@ -14,6 +16,7 @@ const Users = () => {
   const [user, setUser] = useState({
     lastName: "",
     firstName: "",
+    role: "",
     email: "",
     birthday: "",
     phone: "",
@@ -21,13 +24,17 @@ const Users = () => {
   });
 
   useEffect(() => {
-    axios
-      .get("http://localhost:8080/api/events/all/reservations/user")
-      .then((res) => {
-        setDatas(res.data);
-        console.log(res.data);
-      });
+    getAllUseer();
   }, []);
+
+  const getAllUseer = () =>{
+    axios
+    .get("http://localhost:8080/api/events/all/reservations/user")
+    .then((res) => {
+      setDatas(res.data);
+      console.log(res.data);
+    });
+  }
 
   const editCol = (indexCol, user) => {
     setIsEdit(true);
@@ -35,6 +42,22 @@ const Users = () => {
     setUser(user);
     console.log(user, indexCol);
   };
+
+  const handleChange = (event) => {
+    setUser((prev)=>({
+      ...prev,
+      [event.target.name]: event.target.value
+    }));
+    console.log(user);
+  }
+
+  const handleCreate = () => {
+    axios.post(`http://localhost:8080/api/events/users`, user).then((res)=>{
+      console.log(res.data);
+      setIsCreate(false);
+      getAllUseer();
+    })
+  }
 
   return (
     <div>
@@ -47,6 +70,7 @@ const Users = () => {
           <tr>
             <th>Nom</th>
             <th>Prenom</th>
+            <th>Role</th>
             <th>Email</th>
             <th>Date de naissance</th>
             <th>Telephone</th>
@@ -85,6 +109,7 @@ const Users = () => {
                     <tr key={i}>
                       <td>{user.lastName}</td>
                       <td>{user.firstName}</td>
+                      <td>{user.role}</td>
                       <td>{user.email}</td>
                       <td>{user.birthday}</td>
                       <td>{user.phone}</td>
@@ -105,6 +130,7 @@ const Users = () => {
                   <tr key={i}>
                     <td>{user.lastName}</td>
                     <td>{user.firstName}</td>
+                    <td>{user.role}</td>
                     <td>{user.email}</td>
                     <td>{user.birthday}</td>
                     <td>{user.phone}</td>
@@ -126,11 +152,72 @@ const Users = () => {
 
           {isCreate ? (
             <tr>
-              <td>ah</td>
-              <td>bn</td>
-              <td>ch</td>
-              <td>hd</td>
-              <td>bb</td>
+              <td>
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                  <Form.Control
+                    type="text"
+                    placeholder="Nom"
+                    value={user.lastName}
+                    name="lastName"
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+              </td>
+              <td>
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                  <Form.Control
+                    type="text"
+                    placeholder="prenom"
+                    value={user.firstName}
+                    name="firstName"
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+              </td>
+              <td>
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                  <Form.Control
+                    type="text"
+                    placeholder="role"
+                    value={user.role}
+                    name="role"
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+              </td>
+              <td>
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                  <Form.Control
+                    type="text"
+                    placeholder="Email"
+                    value={user.email}
+                    name="email"
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+              </td>
+              <td>
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                  <Form.Control
+                    type="date"
+                    placeholder="Birthday"
+                    value={user.birthday}
+                    name="birthday"
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+              </td>
+              <td>
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                  <Form.Control
+                    type="number"
+                    placeholder="Phone"
+                    value={user.phone}
+                    name="phone"
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+              </td>
               <td>
                 <Button
                   variant="outline-danger"
@@ -141,10 +228,10 @@ const Users = () => {
                 </Button>
                 <Button
                   variant="outline-secondary"
-                  onClick={() => setIsEdit(true)}
+                  onClick={handleCreate}
                 >
                   Create
-                  <PencilFill />
+                  <AddCircle />
                 </Button>
               </td>
             </tr>
