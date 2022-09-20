@@ -91,6 +91,14 @@ const Users = () => {
     });
   };
 
+  const deleteUser = async (id) => {
+    await axios.delete(`http://localhost:8080/api/events/users/${id}`).then((res)=>{
+      if (res.status === 200) {
+        getAllUseer()
+      }
+    });
+  }
+
   return (
     <div>
       <Button variant="outline-danger" onClick={() => setIsCreate(true)}>
@@ -247,7 +255,7 @@ const Users = () => {
                     <td>{user.birthday}</td>
                     <td>{user.phone}</td>
                     <td>
-                      <Button variant="outline-danger">
+                      <Button variant="outline-danger" onClick={()=>deleteUser(user.id)}>
                         <TrashFill />
                       </Button>
                       <Button
