@@ -4,7 +4,12 @@ import { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 // import ConfirmModal from "../components/modal - card/ConfirmModal";
 // import EditIcon from "@rsuite/icons/Edit";
-import { Circle, CircleFill, PencilFill, TrashFill } from "react-bootstrap-icons";
+import {
+  Circle,
+  CircleFill,
+  PencilFill,
+  TrashFill,
+} from "react-bootstrap-icons";
 import Form from "react-bootstrap/Form";
 import { AddCircle } from "@mui/icons-material";
 
@@ -18,7 +23,17 @@ const Users = () => {
     firstName: "",
     role: "",
     email: "",
-    birthday: "",
+    birthday: new Date(),
+    phone: "",
+    reservations: [],
+  });
+  const [userEdit, setUserEdit] = useState({
+    lastName: 0,
+    lastName: "",
+    firstName: "",
+    role: "",
+    email: "",
+    birthday: new Date(),
     phone: "",
     reservations: [],
   });
@@ -27,37 +42,54 @@ const Users = () => {
     getAllUseer();
   }, []);
 
-  const getAllUseer = () =>{
+  const getAllUseer = () => {
     axios
-    .get("http://localhost:8080/api/events/all/reservations/user")
-    .then((res) => {
-      setDatas(res.data);
-      console.log(res.data);
-    });
-  }
+      .get("http://localhost:8080/api/events/all/reservations/user")
+      .then((res) => {
+        setDatas(res.data);
+        console.log(res.data);
+      });
+  };
 
   const editCol = (indexCol, user) => {
     setIsEdit(true);
     setIndexCol(indexCol);
-    setUser(user);
+    setUserEdit(user);
     console.log(user, indexCol);
   };
 
   const handleChange = (event) => {
-    setUser((prev)=>({
+    setUser((prev) => ({
       ...prev,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     }));
     console.log(user);
-  }
+  };
 
   const handleCreate = () => {
-    axios.post(`http://localhost:8080/api/events/users`, user).then((res)=>{
+    // console.log(user.phone.toString())
+    axios.post(`http://localhost:8080/api/events/users`, user).then((res) => {
       console.log(res.data);
       setIsCreate(false);
       getAllUseer();
-    })
-  }
+    });
+  };
+  const handleEdit = (event) => {
+    setUserEdit((prev) => ({
+      ...prev,
+      [event.target.name]: event.target.value,
+    }));
+    console.log(userEdit);
+  };
+
+  const handleEditSubmit = () => {
+    // console.log(userEdit.phone.toString());
+    axios.put(`http://localhost:8080/api/events/users/${userEdit.id}`, userEdit).then((res) => {
+      console.log(res.data);
+      setIsEdit(false);
+      getAllUseer();
+    });
+  };
 
   return (
     <div>
@@ -83,11 +115,91 @@ const Users = () => {
                 isEdit ? (
                   indexCol === i ? (
                     <tr key={i}>
-                      <td>a</td>
-                      <td>b</td>
-                      <td>c</td>
-                      <td>d</td>
-                      <td>b</td>
+                      <td>
+                        <Form.Group
+                          className="mb-3"
+                          controlId="formBasicPassword"
+                        >
+                          <Form.Control
+                            type="text"
+                            placeholder="Nom"
+                            value={userEdit.lastName}
+                            name="lastName"
+                            onChange={handleEdit}
+                          />
+                        </Form.Group>
+                      </td>
+                      <td>
+                        <Form.Group
+                          className="mb-3"
+                          controlId="formBasicPassword"
+                        >
+                          <Form.Control
+                            type="text"
+                            placeholder="prenom"
+                            value={userEdit.firstName}
+                            name="firstName"
+                            onChange={handleEdit}
+                          />
+                        </Form.Group>
+                      </td>
+                      <td>
+                        <Form.Group
+                          className="mb-3"
+                          controlId="formBasicPassword"
+                        >
+                          <Form.Control
+                            type="text"
+                            placeholder="role"
+                            value={userEdit.role}
+                            name="role"
+                            onChange={handleEdit}
+                          />
+                        </Form.Group>
+                      </td>
+                      <td>
+                        <Form.Group
+                          className="mb-3"
+                          controlId="formBasicPassword"
+                        >
+                          <Form.Control
+                            type="text"
+                            placeholder="Email"
+                            value={userEdit.email}
+                            name="email"
+                            onChange={handleEdit}
+                          />
+                        </Form.Group>
+                      </td>
+                      <td>
+                        <Form.Group
+                          className="mb-3"
+                          controlId="formBasicPassword"
+                        >
+                          <Form.Control
+                            type="date"
+                            placeholder="Birthday"
+                            value={userEdit.birthday}
+                            name="birthday"
+                            onChange={handleEdit}
+                          />
+                        </Form.Group>
+                      </td>
+                      <td>
+                        <Form.Group
+                          className="mb-3"
+                          controlId="formBasicPassword"
+                        >
+                          <Form.Control
+                            type="text"
+                            placeholder="Phone"
+                            value={userEdit.phone}
+                            name="phone"
+                            onChange={handleEdit}
+                          />
+                          
+                        </Form.Group>
+                      </td>
                       <td>
                         <Button
                           variant="outline-danger"
@@ -98,7 +210,7 @@ const Users = () => {
                         </Button>
                         <Button
                           variant="outline-secondary"
-                          onClick={() => setIsEdit(true)}
+                          onClick={ handleEditSubmit}
                         >
                           edit
                           <PencilFill />
@@ -226,10 +338,7 @@ const Users = () => {
                   annuler
                   <TrashFill />
                 </Button>
-                <Button
-                  variant="outline-secondary"
-                  onClick={handleCreate}
-                >
+                <Button variant="outline-secondary" onClick={handleCreate}>
                   Create
                   <AddCircle />
                 </Button>
