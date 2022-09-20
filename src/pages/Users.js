@@ -25,6 +25,7 @@ const Users = () => {
   const [indexCol, setIndexCol] = useState(false);
   const [isCreate, setIsCreate] = useState(false);
   const [prevSearch, setPrevSearch] = useState("");
+  const [check, setCheck] = useState("");
   const [user, setUser] = useState({
     lastName: "",
     firstName: "",
@@ -55,7 +56,6 @@ const Users = () => {
       .then((res) => {
         setDatas(res.data);
         setArrayUsers(res.data);
-        console.log(res.data);
       });
   };
   const editCol = (indexCol, user) => {
@@ -107,16 +107,47 @@ const Users = () => {
 
   const handleChangeSearch = (event) => {
     if (event.target.value !== prevSearch) {
-      let filtered = arrayUsers.filter((user) =>
-        user.lastName.includes(event.target.value)
-      );
-      setDatas(filtered);
+      switch (check) {
+        case "email":
+          console.log("email")
+          let filteredemail = arrayUsers.filter((user) =>
+            user.email.includes(event.target.value)
+          );
+          setDatas(filteredemail);
+          break;
+        case "role":
+          console.log("role")
+          let filteredrole = arrayUsers.filter((user) =>
+            user.role.includes(event.target.value)
+          );
+          setDatas(filteredrole);
+          break;
+        case "firstName":
+          console.log("firstname")
+          let filteredfirstName = arrayUsers.filter((user) =>
+            user.firstName.includes(event.target.value)
+          );
+          setDatas(filteredfirstName);
+          break;
+        default:
+          console.log("lastname")
+          let filtered = arrayUsers.filter((user) =>
+            user.lastName.includes(event.target.value)
+          );
+          setDatas(filtered);
+          break;
+      }
     }
     if (event.target.value === "") {
       setDatas(arrayUsers);
     }
 
     setPrevSearch(event.target.value);
+  };
+
+  const handleCheck = (event) => {
+    setCheck(event.target.value);
+    console.log(event.target.value);
   };
 
   return (
@@ -136,31 +167,45 @@ const Users = () => {
             </Button>
           </div>
           <div className="search-options-container">
-            <Col style={{display: "flex", justifyContent: "space-between", padding: "0 1rem"}}>
+            <Col
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                padding: "0 1rem",
+              }}
+            >
               <Form.Check
                 isValid
                 defaultChecked
+                value={"lastName"}
                 type="radio"
                 label="Nom"
+                onChange={handleCheck}
                 name="formHorizontalRadios"
                 id="formHorizontalRadios1"
               />
               <Form.Check
+                value={"firstName"}
                 isValid
+                onChange={handleCheck}
                 type="radio"
-                label="Penom"
+                label="Prenom"
                 name="formHorizontalRadios"
                 id="formHorizontalRadios2"
               />
               <Form.Check
+                value={"email"}
                 isValid
                 type="radio"
+                onChange={handleCheck}
                 label="Email"
                 name="formHorizontalRadios"
                 id="formHorizontalRadios1"
               />
               <Form.Check
+                value={"role"}
                 isValid
+                onChange={handleCheck}
                 type="radio"
                 label="Role"
                 name="formHorizontalRadios"
