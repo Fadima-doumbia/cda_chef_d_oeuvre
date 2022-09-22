@@ -56,6 +56,12 @@ const EditEvent = (props) => {
         console.log(res.data);
         datas.push(res.data);
       });
+      props.onHide();
+      axios.get("http://localhost:8080/api/events/all/reservations/event").then((res) => {
+        props.setDatas(res.data);
+        console.log(res.data)
+      });
+      // window.location.reload(false);
   };
 
   const annuler = (id)=>{
@@ -198,7 +204,7 @@ const EditEvent = (props) => {
                 formData.reservations.map((reservation) => (
                     <ListGroup.Item>
                       {reservation.user.firstName} - {reservation.user.lastName} 
-                      <Button onClick={()=>annuler(reservation.id)}> delete </Button>
+                      <Button onClick={()=>annuler(reservation.id)}> Supprimer </Button>
                     </ListGroup.Item>
                 ))
               ) : (

@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
@@ -28,7 +29,14 @@ const AdminCardEvent = (props) => {
   const editEvent = () => {
     setIsEdit(true);
   };
+  const deleteEvent = (id) => {
+    axios.delete(`http://localhost:8080/api/events/${id}`);
 
+    axios.get("http://localhost:8080/api/events/all/reservations/event").then((res) => {
+      props.setDatas(res.data);
+      console.log(res.data);
+    });
+  };
   console.log(formData);
 
   return (
@@ -87,9 +95,17 @@ const AdminCardEvent = (props) => {
             >
               Modifier
             </Button>
+            <Button
+              variant="primary"
+              onClick={() => deleteEvent(formData.id)}
+              style={{ backgroundColor: "#3C6DA6", margin: "0 1rem" }}
+            >
+              Supprimer
+            </Button>
             <EditEvent
               formData={formData}
               show={modalShow}
+              setDatas={props.setDatas}
               onHide={() => setModalShow(false)}
             />
           </div>

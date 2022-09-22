@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import AdminCardEvent from "../components/modal - card/AdminCardEvent";
-import '../styles.scss'
+import '../../src/styles.scss';
 
 const AdminEventPage = () => {
     const [datas, setDatas] = useState([]);
@@ -28,9 +28,9 @@ const AdminEventPage = () => {
     return(
         <div className="admin-container">
             {datas.length>0?(
-                datas.map((data)=>(
-                    <div>
-                    <AdminCardEvent data={data} edit={editEvent}/>
+                datas.map((data, i)=>(
+                    <div key={i}>
+                    <AdminCardEvent data={data} edit={editEvent} setDatas={setDatas} />
                     </div>
                 ))
             ):(
