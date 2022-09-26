@@ -57,10 +57,10 @@ const EditEvent = (props) => {
         datas.push(res.data);
       });
       props.onHide();
-      axios.get("http://localhost:8080/api/events/all/reservations/event").then((res) => {
-        props.setDatas(res.data);
-        console.log(res.data)
-      });
+      // axios.get("http://localhost:8080/api/events/all/reservations/event").then((res) => {
+      //   props.setDatas(res.data);
+      //   console.log(res.data)
+      // });
       // window.location.reload(false);
   };
 

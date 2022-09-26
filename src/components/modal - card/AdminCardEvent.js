@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useEffect } from "react";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
@@ -10,34 +11,30 @@ const AdminCardEvent = (props) => {
   const [isEdit, setIsEdit] = useState(false);
   const [modalShow, setModalShow] = useState(false);
 
-  const style = {
-    width: "60%",
-    // height: "auto"
-  };
 
-  const handleChange = (event) => {
-    setFormData((prev) => ({
-      ...prev,
-      [event.target.name]: event.target.value,
-    }));
-  };
-
-  const updateEvent = () => {
-    props.edit(formData);
-  };
-
-  const editEvent = () => {
-    setIsEdit(true);
-  };
-  const deleteEvent = (id) => {
-    axios.delete(`http://localhost:8080/api/events/${id}`);
-
+  useEffect(() => {
+getAllEvent();
+  }, [modalShow])
+  
+  const getAllEvent = () => {
     axios.get("http://localhost:8080/api/events/all/reservations/event").then((res) => {
       props.setDatas(res.data);
       console.log(res.data);
     });
+  }
+  const style = {
+    width: "60%",
   };
-  console.log(formData);
+
+  const deleteEvent = (id) => {
+    axios.delete(`http://localhost:8080/api/events/${id}`);
+    getAllEvent();
+    // axios.get("http://localhost:8080/api/events/all/reservations/event").then((res) => {
+    //   props.setDatas(res.data);
+    //   console.log(res.data);
+    // });
+  };
+  // console.log(formData);
 
   return (
     <div>
@@ -105,7 +102,7 @@ const AdminCardEvent = (props) => {
             <EditEvent
               formData={formData}
               show={modalShow}
-              setDatas={props.setDatas}
+              // setDatas={props.setDatas}
               onHide={() => setModalShow(false)}
             />
           </div>

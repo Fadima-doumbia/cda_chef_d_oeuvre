@@ -1,5 +1,10 @@
 import axios from "axios";
 
+// const header = {
+//   headers: {
+//     'Authorization': `Basic ${token}`
+//   }}
+
 const postEvent = (data) => {
   return axios.post(`http://localhost:8080/api/events`, data);
 };
